@@ -7,4 +7,4 @@ let period;
 
 alert('Новое сообщение');
 
-console.log('Это первый урок');
+console.log('Первый урок');
