@@ -14,16 +14,6 @@ let money = +prompt('Ваш месячный доход?'),
     period = Math.round(mission / budgetMonth),
     budgetDay = Math.trunc(budgetMonth / 30);
 
-//вывод в консоль
-console.log(typeof(money), typeof(income), typeof(deposit));
-console.log(addExpenses.length);
-console.log('Период равен ' + period + ' месяцев');
-console.log('Цель заработать ' + mission + ' рублей/долларов/гривен/юани');
-console.log(addExpenses.toLowerCase().split(', '));
-console.log('Бюджет на месяц ' + budgetMonth);
-console.log('Цель будет достигнута за: ' + period + ' месяцев');
-console.log('Бюджет на день: ' + budgetDay);
-
 //ветвления
 if (budgetDay >= 1200) {
     console.log('У вас высокий уровень дохода');
@@ -34,6 +24,16 @@ if (budgetDay >= 1200) {
 } else {
     console.log('Что-то пошло не так');
 }
+
+//вывод в консоль
+console.log(typeof(money), typeof(income), typeof(deposit));
+console.log(addExpenses.length);
+console.log('Период равен ' + period + ' месяцев');
+console.log('Цель заработать ' + mission + ' рублей/долларов/гривен/юани');
+console.log(addExpenses.toLowerCase().split(', '));
+console.log('Бюджет на месяц ' + budgetMonth);
+console.log('Цель будет достигнута за: ' + period + ' месяцев');
+console.log('Бюджет на день: ' + budgetDay);
 
 
 
