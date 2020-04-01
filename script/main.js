@@ -12,9 +12,9 @@ let lang = {
 console.log(lang['ru']);
 
 //условия через if
-if (lang == 'ru') {
+if (lang === 'ru') {
     console.log(ru_days);
-} else if (lang == 'en') {
+} else if (lang === 'en') {
     console.log(en_days);
 }
 
