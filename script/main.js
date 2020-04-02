@@ -14,15 +14,15 @@ let money = +prompt('Ваш месячный доход?'),
     budgetDay = Math.trunc(accumulatedMonth / 30);
  
 //работа с функциями
-function getExpensesMonth(amount1, amount2) {
+let getExpensesMonth = function(amount1, amount2) {
     return (amount1 + amount2);
 }
 
-var accumulatedMonth = function getAccumulatedMonth(money, amount1, amount2) {
-    return (money - (amount1 + amount2));
-}    
+var accumulatedMonth = function(money, amount1, amount2) {
+    return (money - (amount1 - amount2));
+}
 
-function getTargetMonth(accumulatedMonth, period) {
+let getTargetMonth = function(accumulatedMonth, period) {
     return (accumulatedMonth / period);
 }
 
