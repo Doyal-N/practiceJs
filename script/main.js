@@ -9,25 +9,27 @@ let money = +prompt('Ваш месячный доход?'),
     expenses1 = prompt('Введите обязательную статью расходов?'),
     amount1 = +prompt('Во сколько это обойдется?'),
     expenses2 = prompt('Введите обязательную статью расходов?'),
-    amount2 = +prompt('Во сколько это обойдется?'),
-    period = Math.round(mission / accumulatedMonth),
-    budgetDay = Math.trunc(accumulatedMonth / 30);
+    amount2 = +prompt('Во сколько это обойдется?');
+
  
 //работа с функциями
 let getExpensesMonth = function(amount1, amount2) {
     return (amount1 + amount2);
 }
 
-var accumulatedMonth = function(money, amount1, amount2) {
+let accumulatedMonth = function(money, amount1, amount2) {
     return (money - (amount1 - amount2));
 }
+    
+let period = Math.round(mission / accumulatedMonth);
+let budgetDay = Math.trunc(accumulatedMonth / 30);
 
 let getTargetMonth = function(accumulatedMonth, period) {
     return (accumulatedMonth / period);
 }
 
 //ветвления
-let getStatusIncome = function() {
+let getStatusIncome = function(budgetDay) {
     if (budgetDay >= 1200) {
         return ('У вас высокий уровень дохода');
     } else if (budgetDay >= 600) {
@@ -45,4 +47,4 @@ console.log(getExpensesMonth(amount1, amount2));
 console.log(addExpenses.toLowerCase().split(', '));
 console.log(getTargetMonth(accumulatedMonth, period));
 console.log(budgetDay);
-console.log(getStatusIncome()); 
+console.log(getStatusIncome(budgetDay)); 
