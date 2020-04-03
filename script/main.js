@@ -9,27 +9,32 @@ let money = +prompt('Ваш месячный доход?'),
     expenses1 = prompt('Введите обязательную статью расходов?'),
     amount1 = +prompt('Во сколько это обойдется?'),
     expenses2 = prompt('Введите обязательную статью расходов?'),
-    amount2 = +prompt('Во сколько это обойдется?');
+    amount2 = +prompt('Во сколько это обойдется?'),
+    accumulatedMonth;
 
- 
 //работа с функциями
-let getExpensesMonth = function(amount1, amount2) {
-    return (amount1 + amount2);
-}
+const showTypeOf = function(data) {
+    return typeof(data)
+};
 
-let accumulatedMonth = function(money, amount1, amount2) {
-    return (money - (amount1 - amount2));
-}
-    
-let period = Math.round(mission / accumulatedMonth);
+const getExpensesMonth = function() {
+    return (amount1 + amount2);
+};
+
+const getAccumulatedMonth = function() {
+    return (money - (amount1 + amount2));
+};
+
+accumulatedMonth = getAccumulatedMonth();
+
 let budgetDay = Math.trunc(accumulatedMonth / 30);
 
-let getTargetMonth = function(accumulatedMonth, period) {
-    return (accumulatedMonth / period);
-}
+const getTargetMonth = function() {
+    return (mission / accumulatedMonth);
+};
 
 //ветвления
-let getStatusIncome = function(budgetDay) {
+const getStatusIncome = function() {
     if (budgetDay >= 1200) {
         return ('У вас высокий уровень дохода');
     } else if (budgetDay >= 600) {
@@ -39,12 +44,14 @@ let getStatusIncome = function(budgetDay) {
     } else {
         return ('Что-то пошло не так');
     }
-}
+};
 
 //вывод в консоль
-console.log(typeof (money), typeof (income), typeof (deposit));
-console.log(getExpensesMonth(amount1, amount2));
+console.log(showTypeOf(money));
+console.log(showTypeOf(income));
+console.log(showTypeOf(deposit));
+console.log(getExpensesMonth());
 console.log(addExpenses.toLowerCase().split(', '));
-console.log(getTargetMonth(accumulatedMonth, period));
+console.log(Math.round(getTargetMonth()));
 console.log(budgetDay);
-console.log(getStatusIncome(budgetDay)); 
+console.log(getStatusIncome());
