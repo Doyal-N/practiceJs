@@ -4,11 +4,10 @@
 const transformText = (str) => {
   if (typeof(str)  !== 'string') {
     alert('Данные не строка')
-  } else if ( typeof(str) === 'string' && str.length > 30) {
+  } else if (typeof(str) === 'string' && str.length > 30) {
     return str.trim().substring(0, 30) + "..."
   } else {
     return str.trim()
   }
 }
 
-console.log(transformText('Что то стало холодно и голодно, наверно пора затопить печь и начать подкидывать дровишки без остановки. Таким образом температура повысится до терпимой и все станет шикардосно. Но это только предположения, точно я не уверен, что получится такая задума. Но попробовать стоит, а то перемерзнет к херам.'));
