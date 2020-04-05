@@ -12,7 +12,11 @@ const transformText = (str) => {
 }*/
 
 const transformText = (str) => {
-typeof str !== 'string' ? alert('Данные не строка') : str.length > 30 ? alert(str.trim().substring(0, 30) + "...") : alert(str.trim());
+typeof str !== 'string' 
+? alert('Данные не строка') 
+: str.length > 30 
+? alert(str.trim().substring(0, 30) + "...") 
+: alert(str.trim());
 }
 
 
