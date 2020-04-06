@@ -33,14 +33,16 @@ let expenses = [];
 const getExpensesMonth = function () {
 
  let sum = 0;
- let i = 0;
+ let totalSum;
            
-    for (i = 0; i < 2; i++) {
+    for (let i = 0; i < 2; i++) {
         expenses[i] = prompt('Введите обязательную статью расходов?');
       do {
-          sum += (prompt('Во сколько это обойдется?'));
-         } while (!isNum(sum));
+          totalSum = prompt('Во сколько это обойдется?');
+         } while (!isNum(totalSum));
 
+        sum += +totalSum;
+        
     }
      return(sum);
 };
@@ -81,7 +83,8 @@ const getStatusIncome = function () {
 console.log(showTypeOf(money));
 console.log(showTypeOf(income));
 console.log(showTypeOf(deposit));
+console.log(expensesAmount);
 console.log(addExpenses.toLowerCase().split(', '));
-console.log(Math.round(getTargetMonth()));
 console.log(budgetDay);
+console.log(getTargetMonth());
 console.log(getStatusIncome());
