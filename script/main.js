@@ -56,7 +56,12 @@ accumulatedMonth = getAccumulatedMonth();
 let budgetDay = Math.trunc(accumulatedMonth / 30);
 
 const getTargetMonth = function () {
-    return (mission / accumulatedMonth);
+    let time = mission / accumulatedMonth;
+    if (time <= 0) {
+        console.log('Цель не будет достигнута');
+    }  else {
+        console.log('Цель будет достигнута');
+    }
 };
 
 //ветвления
