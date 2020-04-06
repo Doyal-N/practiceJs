@@ -1,6 +1,6 @@
 'use strict';
 
-const isNum = function(n) {
+const isNum = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n)
 };
 
@@ -12,41 +12,42 @@ let money,
     mission = 108000,
     accumulatedMonth;
 
-let start = function() {
-    money = prompt('Ваш месячный доход?');
-
-    while (!isNum(money)) {
+//спрашиваем месячный доход с проверкой    
+const start = function () {
+    do {
         money = prompt('Ваш месячный доход?');
-    }
-};
+    } while (!isNum(money));
+
+    return money
+ };
 
 start();
-   
+
 //работа с функциями
-const showTypeOf = function(data) {
+const showTypeOf = function (data) {
     return typeof (data)
 };
 
 let expenses = [];
 
-const getExpensesMonth = function() {
+const getExpensesMonth = function () {
 
-    let sum = 0;
-    
-    for (let i = 0; i < 2; i++) {
-      
-     expenses[i] = prompt('Введите обязательную статью расходов?');    
+ let sum = 0;
+ let i = 0;
+           
+    for (i = 0; i < 2; i++) {
+        expenses[i] = prompt('Введите обязательную статью расходов?');
+      do {
+          sum += (prompt('Во сколько это обойдется?'));
+         } while (!isNum(sum));
 
-     sum += +prompt('Во сколько это обойдется?');
-
-    };
-    console.log(sum);
-    return sum;
+    }
+     return(sum);
 };
 
 let expensesAmount = getExpensesMonth();
 
-const getAccumulatedMonth = function() {
+const getAccumulatedMonth = function () {
     return money - expensesAmount;
 };
 
@@ -54,12 +55,12 @@ accumulatedMonth = getAccumulatedMonth();
 
 let budgetDay = Math.trunc(accumulatedMonth / 30);
 
-const getTargetMonth = function() {
+const getTargetMonth = function () {
     return (mission / accumulatedMonth);
 };
 
 //ветвления
-const getStatusIncome = function() {
+const getStatusIncome = function () {
     if (budgetDay >= 1200) {
         return ('У вас высокий уровень дохода');
     } else if (budgetDay >= 600) {
