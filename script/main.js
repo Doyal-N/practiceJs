@@ -1,36 +1,39 @@
 'use strict';
 
-const isNum = function (n) {
-    return !isNaN(parseFloat(n)) && isFinite(n)
-};
-
 //операции с переменными и получение данных
 let money,
     income = 'анимация',
     addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
     deposit = confirm('Есть ли у вас депозит в банке?'),
     mission = 108000,
-    accumulatedMonth;
+    accumulatedMonth,
+    expensesAmount,
+    expenses,
+    budgetDay;
+    
+    
+const isNum = function(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n)
+};    
 
 //спрашиваем месячный доход с проверкой    
-const start = function () {
+const start = function() {
     do {
         money = prompt('Ваш месячный доход?');
     } while (!isNum(money));
 
-    return money
- };
+  };
 
 start();
 
 //работа с функциями
-const showTypeOf = function (data) {
+const showTypeOf = function(data) {
     return typeof (data)
 };
 
-let expenses = [];
+expenses = [];
 
-const getExpensesMonth = function () {
+const getExpensesMonth = function() {
 
  let sum = 0;
  let totalSum;
@@ -47,27 +50,27 @@ const getExpensesMonth = function () {
      return(sum);
 };
 
-let expensesAmount = getExpensesMonth();
+expensesAmount = getExpensesMonth();
 
-const getAccumulatedMonth = function () {
+const getAccumulatedMonth = function() {
     return money - expensesAmount;
 };
 
 accumulatedMonth = getAccumulatedMonth();
 
-let budgetDay = Math.trunc(accumulatedMonth / 30);
+budgetDay = Math.trunc(accumulatedMonth / 30);
 
-const getTargetMonth = function () {
+const getTargetMonth = function() {
     let time = mission / accumulatedMonth;
     if (time <= 0) {
-        console.log('Цель не будет достигнута');
+        return 'Цель не будет достигнута';
     }  else {
-        console.log('Цель будет достигнута');
+        return 'Цель будет достигнута';
     }
 };
 
 //ветвления
-const getStatusIncome = function () {
+const getStatusIncome = function() {
     if (budgetDay >= 1200) {
         return ('У вас высокий уровень дохода');
     } else if (budgetDay >= 600) {
