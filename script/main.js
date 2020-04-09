@@ -10,6 +10,15 @@ let money,
     expensesAmount,
     expenses,
     budgetDay;
+
+let appData = {
+    income: {},
+    addIncome: [],
+    expenses: {},
+    addExpenses: [],
+    
+
+};    
     
     
 const isNum = function(n) {
@@ -86,7 +95,7 @@ const getStatusIncome = function() {
 console.log(showTypeOf(money));
 console.log(showTypeOf(income));
 console.log(showTypeOf(deposit));
-console.log(expensesAmount);
+console.log('Расходы за месяц ' + expensesAmount);
 console.log(addExpenses.toLowerCase().split(', '));
 console.log(budgetDay);
 console.log(getTargetMonth());
