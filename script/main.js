@@ -15,6 +15,9 @@ let appData = {
     deposit: false,
     mission: 108000,
     period: 2,
+    budgetDay: 0,
+    budgetMonth: 0,
+    expensesMonth: 0,
     asking: function() {
        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую')
            appData.addExpenses = addExpenses.toLowerCase().split(', ')
@@ -34,10 +37,10 @@ let appData = {
           return(sum);
      },
     getAccumulatedMonth: function() {
-      return appData.budget - appData.getExpensesMonth;
+      return appData.budget - appData.getExpensesMonth();
          },
     getTargetMonth: function() {
-          let time = appData.mission / appData.getAccumulatedMonth;
+          let time = appData.mission / appData.getAccumulatedMonth();
           if (time <= 0) {
               return 'Цель не будет достигнута';
           }  else {
@@ -55,14 +58,11 @@ let appData = {
             return ('Что-то пошло не так');
         }
     },
-    budgetDay: 0,
-    budgetMonth = 0,
-    expensesMonth = 0
+ 
+};   
 
-};    
-    
 //спрашиваем месячный доход с проверкой    
-const start = function () {
+const start = function() {
   do {
     appData.budget = prompt('Ваш месячный доход?');
   } while (!isNum(appData.budget));
@@ -70,9 +70,9 @@ const start = function () {
 };
 start();
 
-appData.budgetDay = Math.trunc(appData.getAccumulatedMonth / 30);
+appData.budgetDay = Math.trunc(appData.getAccumulatedMonth() / 30);
 
 //вывод в консоль
 console.log(appData.budgetDay);
-console.log(appData.getTargetMonth);
-console.log(appData.getStatusIncome);
+console.log(appData.getTargetMonth());
+console.log(appData.getStatusIncome());
