@@ -19,9 +19,9 @@ let appData = {
     budgetMonth: 0,
     expensesMonth: 0,
     asking: function() {
-       let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую')
-           appData.addExpenses = addExpenses.toLowerCase().split(', ')
-           appData.deposit = confirm('Есть ли у вас депозит в банке?')
+       let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+           appData.addExpenses = addExpenses.toLowerCase().split(', ');
+           appData.deposit = confirm('Есть ли у вас депозит в банке?');
     },
     getExpensesMonth: function() {
       let sum = 0;
@@ -32,8 +32,7 @@ let appData = {
                totalSum = prompt('Во сколько это обойдется?');
               } while (!isNum(totalSum));
           sum += +totalSum;
-             
-         }
+        }
           return(sum);
      },
     getAccumulatedMonth: function() {
