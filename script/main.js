@@ -1,15 +1,11 @@
 'use strict';
 
-const guessNumber = function() {
-    let number = 34;
-    let question = prompt('Угадай число от 1 до 100!');
-    if (question > number) {
-      prompt('Загаданное число меньше. Попробуй еще!');
-    } else if (question < number) {
-     prompt('Загаданное число больше, попробуй еще!');
-    } else if (question === number) {
-        alert('Все ок');
-    }
- };
+const isNum = (n) => {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
-guessNumber();
+const getRandomNum = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
