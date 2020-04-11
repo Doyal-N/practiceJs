@@ -28,7 +28,7 @@ const guessNumber = (effort) => {
   return (function checkNumber() {
     const count = counter();
     const userNumber = prompt('Угадай число от 1 до 100');
-    console.log(count);
+    
 
     if (isNum(userNumber)) {
       let repeat = false;      
