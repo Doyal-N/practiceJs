@@ -25,9 +25,10 @@ const guessNumber = (effort) => {
   const randomNum = getRandomNum(1, 100);
   const counter = getCounter();
 
-  return function checkNumber() {
+  return (function checkNumber() {
     const count = counter();
     const userNumber = prompt('Угадай число от 1 до 100');
+    console.log(count);
 
     if (isNum(userNumber)) {
       let repeat = false;      
@@ -42,6 +43,7 @@ const guessNumber = (effort) => {
          return checkNumber();
        } 
        repeat = confirm('Поздравляю. Вы угадали! Хотите сыграть еще?');
+      
      
      } else {
        repeat = confirm('Попытки закончились. Сыграть еще?');
@@ -50,13 +52,12 @@ const guessNumber = (effort) => {
       if (repeat) guessNumber(effort);
 
     } else {
+      if (userNumber === null) return confirm('Пока');
       alert('Введите число');
       checkNumber();
     }
-  }
+  }());
 
 };
 
-const game = guessNumber(10);
-
-game();
+guessNumber(10);
