@@ -30,6 +30,7 @@ let appData = {
     budgetDay: 0,
     budgetMonth: 0,
     expensesMonth: 0,
+
     asking: function() {
        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
            appData.addExpenses = addExpenses.toLowerCase().split(', ');
@@ -44,9 +45,16 @@ let appData = {
        }  
        appData.expenses[point] = +cost;
     },
+
     getExpensesMonth: function() {
-     
+        for (let key in appData.expenses) {
+          let result = 0;
+          result += appData.expenses[key];
+         }
+         return result;
+         console.log(result);         
      },
+
     getAccumulatedMonth: function() {
       return appData.budget - appData.expenses;
          },
@@ -58,6 +66,7 @@ let appData = {
               return 'Цель будет достигнута';
           }
       },
+
     getStatusIncome: function() {
         if (appData.budgetDay >= 1200) {
             return ('У вас высокий уровень дохода');
@@ -73,8 +82,9 @@ let appData = {
 };   
 
 appData.asking();
+console.log(appData.expensesMonth);
 
-// appData.budgetDay = Math.trunc(appData.getAccumulatedMonth() / 30);
+appData.budgetDay = Math.trunc(appData.getAccumulatedMonth() / 30);
 
 
 // //вывод в консоль
