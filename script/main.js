@@ -1,15 +1,27 @@
 'use strict';
 
+let money;
+
 //функция проверки на число
-const isNum = function (n) {
+const isNum = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
 };
+
+//спрашиваем месячный доход с проверкой    
+const start = function() {
+  do {
+    money = prompt('Ваш месячный доход?');
+  } while (!isNum(money));
+
+};
+
+start();
 
 //массив
 let appData = {
     income: {},
     addIncome: [],
-    expenses: [],
+    expenses: {},
     budget: money,
     addExpenses: [],
     deposit: false,
@@ -60,18 +72,10 @@ let appData = {
  
 };   
 
-//спрашиваем месячный доход с проверкой    
-const start = function() {
-  do {
-    appData.budget = prompt('Ваш месячный доход?');
-  } while (!isNum(appData.budget));
-
-};
-start();
-
 appData.budgetDay = Math.trunc(appData.getAccumulatedMonth() / 30);
 
 //вывод в консоль
 console.log(appData.budgetDay);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
+
