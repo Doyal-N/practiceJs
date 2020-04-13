@@ -54,8 +54,9 @@ let appData = {
 
        for (let i = 0; i < 2; i++) {
        let point,
-           cost;    
-      point = prompt('Введите обязательную статью расходов?');
+           cost;   
+        point = prompt('Введите обязательную статью расходов?');     
+      
        do {
         cost = prompt('Во сколько это обойдется?');
        } while (!isNum(cost));
