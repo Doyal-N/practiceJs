@@ -25,6 +25,8 @@ let appData = {
         budget: money,
         addExpenses: [],
         deposit: false,
+        percentDeposit: 0,
+        moneyDeposit: 0,
         mission: 108000,
         period: 2,
         budgetDay: 0,
@@ -34,9 +36,16 @@ let appData = {
     asking: function() {
 
        if (confirm('Есть ли у вас дополнительный заработок?')) {
-           let itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
-           let cashIncome = prompt('Сколько в месяц на этом зарабатываете?', 10000);
-           appData.income[itemIncome] = cashIncome;
+         let itemIncome,
+             cashIncome;
+
+       itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
+       
+         do {
+           cashIncome = prompt('Сколько в месяц на этом зарабатываете?');
+       } while (!isNum(cashIncome));
+
+         appData.income[itemIncome] = cashIncome;
        }
 
        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
@@ -52,8 +61,7 @@ let appData = {
        } while (!isNum(cost));
        appData.expenses[point] = +cost;     
       }  
-       
-     },
+    },
 
     getExpensesMonth: function() {
         for (let key in appData.expenses) {
@@ -64,7 +72,7 @@ let appData = {
     getBudget: function() {
       appData.budgetMonth = appData.budget - appData.expensesMonth;
       appData.budgetDay = Math.trunc(appData.budgetMonth / 30);
-         },
+      },
 
     getTargetMonth: function() {
           let time = appData.mission / appData.budgetMonth;
@@ -86,7 +94,20 @@ let appData = {
             return ('Что-то пошло не так');
         }
     },
+
+    getInfoDeposit: function() {
+      if (appData.deposit) {
+        do {
+          appData.percentDeposit = prompt('Годовой процент');
+          appData.moneyDeposit = prompt('Размер вклада');
+        } while (!isNum(appData.percentDeposit, appData.moneyDeposit ));
  
+      }
+    },
+ 
+    calcSavedMoney: function() {
+     return appData.budgetMonth * appData.period;
+    }
 };  
 
 //вызов методов объекта поочередно
