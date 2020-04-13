@@ -48,13 +48,15 @@ let appData = {
 
          appData.income[itemIncome] = cashIncome;
        }
-
-       let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-        let str = appData.addExpenses.join(', ');
+   
+    let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+    appData.addExpenses.push(addExpenses);      
+    let str = appData.addExpenses.join(', ');
         str = str.charAt(0).toUpperCase() + str.substr(1);
-        appData.deposit = confirm('Есть ли у вас депозит в банке?');
-      
-       
+      console.log(str);
+
+    appData.deposit = confirm('Есть ли у вас депозит в банке?');
+                
        for (let i = 0; i < 2; i++) {
        let point,
            cost;
@@ -66,8 +68,7 @@ let appData = {
         cost = prompt('Во сколько это обойдется?');
        } while (!isNum(cost));
        appData.expenses[point] = +cost;     
-      }  
-      
+         }        
     },
 
     getExpensesMonth: function() {
@@ -115,8 +116,7 @@ let appData = {
     calcSavedMoney: function() {
      return appData.budgetMonth * appData.period;
     },
-
-    
+   
 
 };  
 
