@@ -50,10 +50,11 @@ let appData = {
        }
 
        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-           appData.addExpenses = addExpenses.toUpperCase().split(', ');
-           appData.deposit = confirm('Есть ли у вас депозит в банке?');
-  
-
+        let str = appData.addExpenses.join(', ');
+        str = str.charAt(0).toUpperCase() + str.substr(1);
+        appData.deposit = confirm('Есть ли у вас депозит в банке?');
+      
+       
        for (let i = 0; i < 2; i++) {
        let point,
            cost;
@@ -66,6 +67,7 @@ let appData = {
        } while (!isNum(cost));
        appData.expenses[point] = +cost;     
       }  
+      
     },
 
     getExpensesMonth: function() {
@@ -125,15 +127,20 @@ appData.getBudget();
 appData.getTargetMonth();
 appData.getStatusIncome();
 
+
 //расходы за месяц, период до цели, статус
 console.log(appData.expensesMonth);
 console.log(appData.period);
 console.log(appData.getStatusIncome());
-console.log(appData.addExpenses);
 
-//вывод в консоль всех свойств и значений объекта
-for (let key in appData) {
-    console.log('Свойство: ' + key + 'значение: ' + appData[key]);
-   };
+// //вывод в консоль всех свойств и значений объекта
+// for (let key in appData) {
+//     console.log('Свойство: ' + key + 'значение: ' + appData[key]);
+//    };
+
+
+
+
+
 
 
