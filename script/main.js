@@ -10,7 +10,7 @@ const isNum = function(n) {
 //спрашиваем месячный доход с проверкой    
 const start = function() {
   do {
-    money = prompt('Ваш месячный доход?');
+    money = prompt('Ваш месячный доход?', 50000);
   } while (!isNum(money));
 
 };
@@ -33,7 +33,7 @@ let appData = {
 
     asking: function() {
 
-       if (true) {
+       if (confirm('Есть ли у вас дополнительный заработок?')) {
            let itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
            let cashIncome = prompt('Сколько в месяц на этом зарабатываете?', 10000);
            appData.income[itemIncome] = cashIncome;
