@@ -38,9 +38,10 @@ let appData = {
        if (confirm('Есть ли у вас дополнительный заработок?')) {
          let itemIncome,
              cashIncome;
-
-       itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
-       
+         do { 
+           itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
+          } while (isNum(itemIncome));         
+                           
          do {
            cashIncome = prompt('Сколько в месяц на этом зарабатываете?');
        } while (!isNum(cashIncome));
@@ -49,13 +50,16 @@ let appData = {
        }
 
        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-           appData.addExpenses = addExpenses.toLowerCase().split(', ');
+           appData.addExpenses = addExpenses.toUpperCase().split(', ');
            appData.deposit = confirm('Есть ли у вас депозит в банке?');
+  
 
        for (let i = 0; i < 2; i++) {
        let point,
-           cost;   
-        point = prompt('Введите обязательную статью расходов?');     
+           cost;
+        do {
+          point = prompt('Введите обязательную статью расходов?'); 
+        } while (isNum(point));            
       
        do {
         cost = prompt('Во сколько это обойдется?');
@@ -108,7 +112,10 @@ let appData = {
  
     calcSavedMoney: function() {
      return appData.budgetMonth * appData.period;
-    }
+    },
+
+    
+
 };  
 
 //вызов методов объекта поочередно
@@ -122,6 +129,7 @@ appData.getStatusIncome();
 console.log(appData.expensesMonth);
 console.log(appData.period);
 console.log(appData.getStatusIncome());
+console.log(appData.addExpenses);
 
 //вывод в консоль всех свойств и значений объекта
 for (let key in appData) {
