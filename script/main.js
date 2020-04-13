@@ -82,10 +82,7 @@ let appData = {
  
 };  
 
-for (let key in appData) {
- console.log('Свойство: ' + key + 'значение: ' + appData[key]);
-};
-
+//вызов методов объекта поочередно
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
@@ -96,5 +93,10 @@ appData.getStatusIncome();
 console.log(appData.expensesMonth);
 console.log(appData.period);
 console.log(appData.getStatusIncome());
+
+//вывод в консоль всех свойств и значений объекта
+for (let key in appData) {
+    console.log('Свойство: ' + key + 'значение: ' + appData[key]);
+   };
 
 
