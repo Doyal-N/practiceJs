@@ -50,11 +50,11 @@ let appData = {
        }
    
     let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-    appData.addExpenses.push(addExpenses); 
-    let str = appData.addExpenses.map(word => word.charAt(0).toUpperCase() + word.slice(1));     
-    let str = appData.addExpenses.join(', ');
-       
-    console.log(str);
+    appData.addExpenses = addExpenses.toLocaleLowerCase().split(',');
+    appData.addExpenses = appData.addExpenses.map(word => word.trim());
+    appData.addExpenses = appData.addExpenses.map(word => word.charAt(0).toUpperCase() + word.slice(1));     
+           
+    console.log(appData.addExpenses.join(', '));
 
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
                 
@@ -134,10 +134,10 @@ console.log(appData.expensesMonth);
 console.log(appData.period);
 console.log(appData.getStatusIncome());
 
-// //вывод в консоль всех свойств и значений объекта
-// for (let key in appData) {
-//     console.log('Свойство: ' + key + 'значение: ' + appData[key]);
-//    };
+//вывод в консоль всех свойств и значений объекта
+for (let key in appData) {
+    console.log('Свойство: ' + key + 'значение: ' + appData[key]);
+   };
 
 
 
