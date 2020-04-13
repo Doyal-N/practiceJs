@@ -32,6 +32,13 @@ let appData = {
         expensesMonth: 0,
 
     asking: function() {
+
+      if (true) {
+        let itemIncome = prompt('Вид дополнительного заработка','Таксую');
+        let cashIncome = prompt('Сколько приносит в месяц?', 10000);
+        appData.income[itemIncome] = cashIncome; 
+      }
+
        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
            appData.addExpenses = addExpenses.toLowerCase().split(', ');
            appData.deposit = confirm('Есть ли у вас депозит в банке?');
@@ -94,9 +101,9 @@ console.log(appData.expensesMonth);
 console.log(appData.period);
 console.log(appData.getStatusIncome());
 
-//вывод в консоль всех свойств и значений объекта
-for (let key in appData) {
-    console.log('Свойство: ' + key + 'значение: ' + appData[key]);
-   };
+// //вывод в консоль всех свойств и значений объекта
+// for (let key in appData) {
+//     console.log('Свойство: ' + key + 'значение: ' + appData[key]);
+//    };
 
 
