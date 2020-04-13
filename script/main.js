@@ -80,7 +80,11 @@ let appData = {
         }
     },
  
-};   
+};  
+
+for (let key in appData) {
+ console.log('Свойство: ' + key + 'значение: ' + appData[key]);
+};
 
 appData.asking();
 appData.getExpensesMonth();
@@ -92,6 +96,5 @@ appData.getStatusIncome();
 console.log(appData.expensesMonth);
 console.log(appData.period);
 console.log(appData.getStatusIncome());
-console.log(appData.budgetDay);
-console.log(appData.budgetMonth);
+
 
