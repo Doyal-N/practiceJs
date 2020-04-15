@@ -108,9 +108,10 @@ let appData = {
       if (appData.deposit) {
         do {
           appData.percentDeposit = prompt('Годовой процент');
+         } while (!isNum(appData.percentDeposit));
+        do {
           appData.moneyDeposit = prompt('Размер вклада');
-        } while (!isNum(appData.percentDeposit, appData.moneyDeposit ));
- 
+        } while (!isNum(appData.moneyDeposit)); 
       }
     },
  
@@ -118,7 +119,6 @@ let appData = {
      return appData.budgetMonth * appData.period;
     },
    
-
 };  
 
 //вызов методов объекта поочередно
@@ -127,6 +127,7 @@ appData.getExpensesMonth();
 appData.getBudget();
 appData.getTargetMonth();
 appData.getStatusIncome();
+appData.getInfoDeposit();
 
 
 //расходы за месяц, период до цели, статус
