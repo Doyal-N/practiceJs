@@ -1,5 +1,32 @@
 // 'use strict';
 
+//получение элементов документа
+const buttonCalculation = document.getElementById('start');
+      buttonPlus_1 = document.getElementsByTagName('button')[0];
+      buttonPlus_2 = document.getElementsByTagName('button')[1];
+      checkbox = document.querySelector('#deposit-check');
+      strInput = document.querySelectorAll('.additional_income-item');
+      
+      //можно сделать и через getElementsByClassName
+      dayInput = document.getElementsByClassName('budget_day-value')[0];
+      expensesInput = document.getElementsByClassName('expenses_month-value')[0];
+      incomeInput = document.getElementsByClassName('additional_income-value')[0];
+      totalExpensesInput = document.getElementsByClassName('additional_expenses-value')[0];
+      incomePeriodInput = document.getElementsByClassName('income_period-value')[0];
+      targetInput = document.getElementsByClassName('target_month-value')[0];
+      
+      //остальные поля
+      incomeMonthInput = document.querySelector('.salary-amount');
+      incomeTitleInput = document.querySelector('.income-title');
+      incomeAmountInput = document.querySelector('.income-amount');
+      expensesTitleInput = document.querySelector('.expenses-title');
+      expensesAmountInput = document.querySelector('.expenses-amount');
+      additionalExpensesInput = document.querySelector('.additional_expenses-item');
+      depositInput = document.querySelector('.deposit-amount');
+      percentInput = document.querySelector('.deposit-percent');
+      goalInput = document.querySelector('.target-amount');
+      rangeSelector = document.querySelector('.period-select');
+
 // let money;
 
 // //функция проверки на число
@@ -138,30 +165,5 @@
 //     console.log('Свойство: ' + key + 'значение: ' + appData[key]);
 //    };
 
-//получение элементов документа
-const buttonCalculation = document.getElementById('start');
-      buttonPlus_1 = document.getElementsByTagName('button')[0];
-      buttonPlus_2 = document.getElementsByTagName('button')[1];
-      checkbox = document.querySelector('#deposit-check');
 
-      //можно сделать и через getElementsByClassName
-      strInput = document.querySelectorAll('.additional_income-item');
-      dayInput = document.querySelector('.budget_day-value');
-      expensesInput = document.querySelector('.expenses_month-value');
-      incomeInput = document.querySelector('.additional_income-value');
-      totalExpensesInput = document.querySelector('.additional_expenses-value');
-      incomePeriodInput = document.querySelector('.income_period-value');
-      targetInput = document.querySelector('.target_month-value');
-
-      //остальные поля
-      incomeMonthInput = document.querySelector('.salary-amount');
-      incomeTitleInput = document.querySelector('.income-title');
-      incomeAmountInput = document.querySelector('.income-amount');
-      expensesTitleInput = document.querySelector('.expenses-title');
-      expensesAmountInput = document.querySelector('.expenses-amount');
-      additionalExpensesInput = document.querySelector('.additional_expenses-item');
-      depositInput = document.querySelector('.deposit-amount');
-      percentInput = document.querySelector('.deposit-percent');
-      goalInput = document.querySelector('.target-amount');
-      rangeSelector = document.querySelector('.period-select');
      
