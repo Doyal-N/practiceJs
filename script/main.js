@@ -127,8 +127,6 @@ appData.getExpensesMonth();
 appData.getBudget();
 appData.getTargetMonth();
 appData.getStatusIncome();
-appData.getInfoDeposit();
-
 
 //расходы за месяц, период до цели, статус
 console.log(appData.expensesMonth);
