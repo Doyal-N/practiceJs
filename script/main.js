@@ -44,13 +44,7 @@ newItem.textContent = 'Глава 8: За пределами ES6';
 allList[5].prepend(newItem);
 itemBook_6[9].before(newItem);
 
-
-
-            
-
-
-
-
+       
 // //получение элементов документа
 // const buttonCalculation = document.getElementById('start'),
 //       buttonPlus_1 = document.getElementsByTagName('button')[0],
