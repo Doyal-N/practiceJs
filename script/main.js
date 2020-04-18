@@ -23,24 +23,30 @@ adv.remove();
 
 //восстановим порядок глав во 2-ой книге
 const allList = document.querySelectorAll('ul');
-console.log(allList[1]);
 const allItem = allList[1].querySelectorAll('li');
 allItem[10].before(allItem[2]);
 allItem[6].after(allItem[8]);
 allItem[3].after(allItem[6]);
-console.log(allItem[4]);
-console.log(allItem[8]);
 allItem[4].before(allItem[8]);
 
+//порядок глав в 5-ой книге
+const item = allList[4].querySelectorAll('li');
+item[1].after(item[9]);
+item[3].after(item[2]);
+item[4].after(item[2]);
+item[8].before(item[5]);
+
+//добавим главу в 6-ю книгу
+const itemBook_6 = allList[5].querySelectorAll('li'),
+      newItem = document.createElement('li');
+
+newItem.textContent = 'Глава 8: За пределами ES6';
+allList[5].prepend(newItem);
+itemBook_6[9].before(newItem);
 
 
 
-
-
-
-
-
-
+            
 
 
 
