@@ -1,5 +1,50 @@
 'use strict';
 
+//упорядочим книги по номеру
+const sectionBooks = document.querySelector('.books'),
+      divBook = document.querySelectorAll('.book');
+
+sectionBooks.prepend(divBook[1]);
+sectionBooks.append(divBook[2]);
+divBook[2].before(divBook[3]);
+divBook[4].after(divBook[3]);
+
+//меняем картинку заднего фона
+document.body.style.backgroundImage = 'url(./image/you-dont-know-js.jpg)';
+
+//исправим заголовок в книге 3 и приведем к единому стилю
+const titleBook_3 = document.getElementsByTagName('h2')[2];
+titleBook_3.textContent = 'Книга 3. this и Прототипы Объектов';
+titleBook_3.style.color = 'darkkhaki';
+
+//удалим рекламу
+const adv = document.querySelector('.adv');
+adv.remove();
+
+//восстановим порядок глав во 2-ой книге
+const allList = document.querySelectorAll('ul');
+console.log(allList[1]);
+const allItem = allList[1].querySelectorAll('li');
+allItem[10].before(allItem[2]);
+allItem[6].after(allItem[8]);
+allItem[3].after(allItem[6]);
+console.log(allItem[4]);
+console.log(allItem[8]);
+allItem[4].before(allItem[8]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // //получение элементов документа
 // const buttonCalculation = document.getElementById('start'),
 //       buttonPlus_1 = document.getElementsByTagName('button')[0],
