@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 //получение элементов документа
 const buttonCalculation = document.getElementById('start'),
@@ -6,17 +6,12 @@ const buttonCalculation = document.getElementById('start'),
       buttonPlus_2 = document.getElementsByTagName('button')[1],
       checkbox = document.querySelector('#deposit-check'),
       strInput = document.querySelectorAll('.additional_income-item'),
-      
-      
-      //можно сделать и через getElementsByClassName
       dayInput = document.getElementsByClassName('budget_day-value')[0],
       expensesInput = document.getElementsByClassName('expenses_month-value')[0],
       incomeInput = document.getElementsByClassName('additional_income-value')[0],
       totalExpensesInput = document.getElementsByClassName('additional_expenses-value')[0],
       incomePeriodInput = document.getElementsByClassName('income_period-value')[0],
       targetInput = document.getElementsByClassName('target_month-value')[0],
-      
-      //остальные поля
       incomeMonthInput = document.querySelector('.salary-amount'),
       incomeTitleInput = document.querySelector('.income-title'),
       incomeAmountInput = document.querySelector('.income-amount'),
