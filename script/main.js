@@ -23,8 +23,6 @@ const buttonCalculation = document.getElementById('start'),
       goalInput = document.querySelector('.target-amount'),
       rangeSelector = document.querySelector('.period-select');
 
-let money;
-
 //функция проверки на число
 const isNum = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
@@ -35,7 +33,7 @@ let appData = {
         income: {},
         addIncome: [],
         expenses: {},
-        budget: money,
+        budget: 0,
         addExpenses: [],
         deposit: false,
         percentDeposit: 0,
@@ -47,9 +45,13 @@ let appData = {
         expensesMonth: 0,
 
     start: function() {
-          do {
-            money = prompt('Ваш месячный доход?', 50000);
-          } while (!isNum(money));
+       if (incomeMonthInput.value === '') {
+         alert('Поле "Месячный доход" обязательно для заполнения!')
+         return
+       }
+
+          appData.budget = incomeMonthInput.value;
+          console.log(incomeMonthInput.value);
 
           // appData.asking();
           // appData.getExpensesMonth();
@@ -147,14 +149,14 @@ let appData = {
 
 buttonCalculation.addEventListener('click', appData.start);
 
-//расходы за месяц, период до цели, статус
-console.log(appData.expensesMonth);
-console.log(appData.period);
-console.log(appData.getStatusIncome());
 
-//вывод в консоль всех свойств и значений объекта
-for (let key in appData) {
-    console.log('Свойство: ' + key + 'значение: ' + appData[key]);
-   };
+
+
+
+
+// //вывод в консоль всех свойств и значений объекта
+// for (let key in appData) {
+//     console.log('Свойство: ' + key + 'значение: ' + appData[key]);
+//    };
 
 
