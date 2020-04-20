@@ -14,7 +14,6 @@
       incomePeriodInput = document.getElementsByClassName('income_period-value')[0],
       targetInput = document.getElementsByClassName('target_month-value')[0],
       incomeMonthInput = document.querySelector('.salary-amount'),
-      incomeTitleInput = document.querySelector('.income-title'),
       expensesTitleInput = document.querySelector('.expenses-title'),
       expensesItems = document.querySelectorAll('.expenses-items'),
       additionalExpensesInput = document.querySelector('.additional_expenses-item'),
@@ -94,26 +93,19 @@ let appData = {
     },
 
     getIncome: function() {
-      if (confirm('Есть ли у вас дополнительный заработок?')) {
-        let itemIncome,
-            cashIncome;
-        do { 
-          itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
-         } while (isNum(itemIncome));         
-
-        do {
-          cashIncome = prompt('Сколько в месяц на этом зарабатываете?');
-      } while (!isNum(cashIncome));
-
-        appData.income[itemIncome] = cashIncome;
-      }
-      
+      incomeItem.forEach(function(item){
+        let itemIncome = item.querySelector('.income-title').value;
+        let cashIncome = item.querySelector('.income-amount').value;
+        if (itemIncome !== '' && cashIncome !== '') {
+          appData.income[itemIncome] = cashIncome;
+        }
+      });
+           
       for (let key in appData.income) {
         appData.incomeMonth += +appData.income[key];
       }
-
-    },
-
+    },  
+    
     getAddExpenses: function() {
       let addExpenses = additionalExpensesInput.value.split(',');
       addExpenses.forEach(function(item){
