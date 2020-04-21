@@ -57,8 +57,6 @@ let appData = {
           appData.getAddIncome();
           appData.getBudget();
           appData.showResult();
-         
-
         },
 
     showResult: function() {
@@ -74,13 +72,25 @@ let appData = {
     addExpensesBlock: function() {
       let cloneExpensesItem = expensesItems[0].cloneNode(true);
 
-      expensesItems[0].parentNode.append(cloneExpensesItem, buttonPlus_2);
+      expensesItems[0].parentNode.insertBefore(cloneExpensesItem, buttonPlus_2);
       expensesItems = document.querySelectorAll('.expenses-items');   
 
       if (expensesItems.length === 3) {
         buttonPlus_2.style.display = 'none';
       }
     }, 
+
+    addIncomeBlock: function() {
+      let cloneincomeItem = incomeItem[0].cloneNode(true);
+
+      incomeItem[0].parentNode.append(cloneincomeItem, buttonPlus_1);
+      incomeItem = document.querySelectorAll('.income-items');
+      
+      if (incomeItem.length === 3) {
+        buttonPlus_1.style.display = 'none';
+      }
+
+    },
 
     getExpenses: function() {
       expensesItems.forEach(function(item){
@@ -172,6 +182,7 @@ let appData = {
 
 buttonCalculation.addEventListener('click', appData.start);
 buttonPlus_2.addEventListener('click', appData.addExpensesBlock);
+buttonPlus_1.addEventListener('click', appData.addIncomeBlock);
 
 
  
