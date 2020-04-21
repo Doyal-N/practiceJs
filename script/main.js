@@ -61,7 +61,7 @@ let appData = {
 
     showResult: function() {
       budgetMonthValue.value = appData.budgetMonth;
-      dayInput.value = appData.budgetDay;
+      dayInput.value = Math.trunc(appData.budgetDay);
       expensesInput.value = appData.expensesMonth;
       totalExpensesInput.value = appData.addExpenses.join(', ');
       incomeInput.value = appData.addIncome.join(', ');
@@ -89,7 +89,6 @@ let appData = {
       if (incomeItem.length === 3) {
         buttonPlus_1.style.display = 'none';
       }
-
     },
 
     getExpenses: function() {
@@ -178,20 +177,26 @@ let appData = {
      return appData.budgetMonth * rangeSelector.value
     },
 
+    periodSelect: function() {
+     let range = document.querySelector('.period-select').value;
+     let titleAmount = document.querySelector('.title period-amount');
+
+     titleAmount.textContent = range;
+                
+    },
+
 }; 
 
 buttonCalculation.addEventListener('click', appData.start);
 buttonPlus_2.addEventListener('click', appData.addExpensesBlock);
 buttonPlus_1.addEventListener('click', appData.addIncomeBlock);
+rangeSelector.addEventListener('input', appData.periodSelect);
+
+
+
+
 
 
  
-
-
-
-// //вывод в консоль всех свойств и значений объекта
-// for (let key in appData) {
-//     console.log('Свойство: ' + key + 'значение: ' + appData[key]);
-//    };
 
 
