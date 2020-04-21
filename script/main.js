@@ -179,9 +179,9 @@ let appData = {
 
     periodSelect: function() {
      let range = document.querySelector('.period-select').value;
-     let titleAmount = document.querySelector('.title period-amount');
+     let titleAmount = document.querySelector('.period-amount');
 
-     titleAmount.textContent = range;
+     titleAmount.textContent= range;
                 
     },
 
