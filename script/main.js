@@ -2,6 +2,7 @@
 
 //получение элементов документа
   let buttonCalculation = document.getElementById('start'),
+      buttonCancel = document.getElementById('cancel'),
       buttonPlus_1 = document.getElementsByTagName('button')[0],
       buttonPlus_2 = document.getElementsByTagName('button')[1],
       checkbox = document.querySelector('#deposit-check'),
@@ -21,7 +22,10 @@
       percentInput = document.querySelector('.deposit-percent'),
       goalInput = document.querySelector('.target-amount'),
       incomeItem = document.querySelectorAll('.income-items'),
-      rangeSelector = document.querySelector('.period-select');
+      rangeSelector = document.querySelector('.period-select'),
+      inputText = document.querySelectorAll('input[type="text"]');
+
+ 
 
 //функция проверки на число
 const isNum = function(n) {
@@ -190,15 +194,25 @@ let appData = {
       } else {
         return
       }
+    },
+    
+    canc: function() {
+      buttonCalculation.style.display = 'none';
+      buttonCancel.style.display = 'block';
     }
 
+
+ 
 }; 
 
 buttonCalculation.addEventListener('click', appData.start.bind(start));
+buttonCalculation.addEventListener('click', appData.canc);
 buttonPlus_2.addEventListener('click', appData.addExpensesBlock);
 buttonPlus_1.addEventListener('click', appData.addIncomeBlock);
 rangeSelector.addEventListener('input', appData.periodSelect);
 buttonCalculation.addEventListener('click', appData.clickStart);
+
+
 
 
 
