@@ -44,7 +44,7 @@ let appData = {
         expensesMonth: 0,
 
     start: function() {
-       
+          
           appData.budget = +incomeMonthInput.value;
           
           appData.getExpenses();
@@ -57,13 +57,13 @@ let appData = {
         },
 
     showResult: function() {
-      budgetMonthValue.value = appData.budgetMonth;
-      dayInput.value = Math.trunc(appData.budgetDay);
-      expensesInput.value = appData.expensesMonth;
-      totalExpensesInput.value = appData.addExpenses.join(', ');
-      incomeInput.value = appData.addIncome.join(', ');
-      targetInput.value = Math.ceil(appData.getTargetMonth());
-      incomePeriodInput.value = appData.calcSavedMoney();
+      budgetMonthValue.value = this.budgetMonth;
+      dayInput.value = Math.trunc(this.budgetDay);
+      expensesInput.value = this.expensesMonth;
+      totalExpensesInput.value = this.addExpenses.join(', ');
+      incomeInput.value = this.addIncome.join(', ');
+      targetInput.value = Math.ceil(this.getTargetMonth());
+      incomePeriodInput.value = this.calcSavedMoney();
       rangeSelector.addEventListener('input', function(){
         incomePeriodInput.value = appData.calcSavedMoney();
       })
@@ -141,12 +141,12 @@ let appData = {
      },
 
     getBudget: function() {
-      appData.budgetMonth = (appData.budget + appData.incomeMonth) - appData.expensesMonth;
-      appData.budgetDay = Math.trunc(appData.budgetMonth / 30);
+      this.budgetMonth = (this.budget + this.incomeMonth) - this.expensesMonth;
+      this.budgetDay = Math.trunc(this.budgetMonth / 30);
       },
 
     getTargetMonth: function() {
-         return goalInput.value / appData.budget
+         return goalInput.value / this.budget
       },
 
     getStatusIncome: function() {
@@ -174,7 +174,7 @@ let appData = {
     },
 
     calcSavedMoney: function() {
-     return appData.budgetMonth * rangeSelector.value
+     return this.budgetMonth * rangeSelector.value
     },
 
     periodSelect: function() {
@@ -182,8 +182,7 @@ let appData = {
      let titleAmount = document.querySelector('.period-amount');
 
      titleAmount.textContent= range;
-                
-    },
+   },
 
     clickStart: function() {
       if (incomeMonthInput.value === '') {
@@ -195,7 +194,7 @@ let appData = {
 
 }; 
 
-buttonCalculation.addEventListener('click', appData.start);
+buttonCalculation.addEventListener('click', appData.start.bind(start));
 buttonPlus_2.addEventListener('click', appData.addExpensesBlock);
 buttonPlus_1.addEventListener('click', appData.addIncomeBlock);
 rangeSelector.addEventListener('input', appData.periodSelect);
