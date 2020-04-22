@@ -197,12 +197,13 @@ let appData = {
     },
     
     canc: function() {
+      inputText.forEach(function(item){
+        item.disabled = true;
+      })
       buttonCalculation.style.display = 'none';
       buttonCancel.style.display = 'block';
     }
 
-
- 
 }; 
 
 buttonCalculation.addEventListener('click', appData.start.bind(start));
