@@ -209,7 +209,7 @@ let appData = {
 
     resetData: function() {
       //обнуляем инпуты
-     inputText = document.querySelectorAll('input[type="text"]')
+     inputText = document.querySelectorAll('input[type="text"]');
      inputText.forEach(function(item){
        item.disabled = false;
        item.value = '';
