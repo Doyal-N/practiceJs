@@ -231,14 +231,13 @@ let appData = {
       buttonPlus_1.style.display = 'block';
       buttonPlus_2.style.display = 'block';
 
-      //обнуляем ползунок
+      //скидываем ползунок
       let range = document.querySelector('.period-select'),
           titleAmount = document.querySelector('.period-amount');
 
        range.value =  1; 
        titleAmount.textContent = 1;   
-       incomePeriodInput.removeEventListener('change', incomePeriodInput);
-         
+               
     }
 
 }; 
