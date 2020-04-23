@@ -58,6 +58,7 @@ let appData = {
           appData.getAddIncome();
           appData.getBudget();
           appData.showResult();
+          
         },
 
     showResult: function() {
@@ -163,6 +164,7 @@ let appData = {
         } else {
             return ('Что-то пошло не так');
         }
+        
     },
 
     getInfoDeposit: function() {
@@ -196,22 +198,60 @@ let appData = {
       }
     },
     
-    canc: function() {
+    blockInputs: function() {
+     inputText = document.querySelectorAll('input[type="text"]');
       inputText.forEach(function(item){
         item.disabled = true;
       })
       buttonCalculation.style.display = 'none';
       buttonCancel.style.display = 'block';
+    },
+
+    resetData: function() {
+      //обнуляем инпуты
+     inputText = document.querySelectorAll('input[type="text"]')
+     inputText.forEach(function(item){
+       item.disabled = false;
+       item.value = '';
+     });
+     //возвращаем кнопку Рассчитать
+     buttonCalculation.style.display = 'block';
+     buttonCancel.style.display = 'none';
+     //убираем допстроки
+     incomeItem = document.querySelectorAll('.income-items');
+      for (let i = 1; incomeItem.length > i; i++) {
+      incomeItem[i].remove()
+      }   
+     expensesItems = document.querySelectorAll('.expenses-items');
+      for (let i = 1; expensesItems.length > i; i++) {
+        expensesItems[i].remove()
+      } 
+
+      //возвращаем кнопки +
+      buttonPlus_1.style.display = 'block';
+      buttonPlus_2.style.display = 'block';
+
+      //обнуляем ползунок
+      let range = document.querySelector('.period-select'),
+          titleAmount = document.querySelector('.period-amount');
+
+       range.value =  1; 
+       titleAmount.textContent = 1;   
+       incomePeriodInput.removeEventListener('change', incomePeriodInput);
+         
     }
 
 }; 
 
 buttonCalculation.addEventListener('click', appData.start.bind(start));
-buttonCalculation.addEventListener('click', appData.canc);
+buttonCalculation.addEventListener('click', appData.blockInputs);
+buttonCalculation.addEventListener('click', appData.clickStart);
 buttonPlus_2.addEventListener('click', appData.addExpensesBlock);
 buttonPlus_1.addEventListener('click', appData.addIncomeBlock);
 rangeSelector.addEventListener('input', appData.periodSelect);
-buttonCalculation.addEventListener('click', appData.clickStart);
+buttonCancel.addEventListener('click', appData.resetData);
+
+
 
 
 
