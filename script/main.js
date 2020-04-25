@@ -6,7 +6,22 @@ let todoControl = document.querySelector('.todo-control'),
     todoCompleted = document.querySelector('.todo-completed'),
     headerBtn = document.getElementById('add');
 
-let todoData = [];     
+let todoData = [
+
+];  
+
+if (localStorage.setItem(todoData)) {
+  todoData = JSON.parse(localStorage.getItem(todoData));
+}
+
+const AddLS = function() {
+  localStorage.setItem(todoData, JSON.stringify(todoData));
+  console.log(localStorage.getItem(todoData));
+}
+
+const getLS = function() {
+ 
+}
 
 //функция рендер уже добавленных дел и  состояний
 const render = function() {
@@ -32,13 +47,17 @@ const render = function() {
     const btnTodoComplete = li.querySelector('.todo-complete');
     btnTodoComplete.addEventListener('click', function(){
       item.completed = !item.completed;
+
+      AddLS();
       render();
     })
+
   //удаляем дело по клике на корзину  
     const btnRemove = li.querySelector('.todo-remove');
     btnRemove.addEventListener('click', function(){
-      li.remove();
-      
+     li.remove();
+
+            
     })
    })
 };  
@@ -51,29 +70,17 @@ todoControl.addEventListener('submit', function(event){
     completed: false
    };
 
-  
  //проверили на пустое значение, если НЕТ - добавили и обнулили, если ДА - то алерт
    if (headerInput.value !== '') {
     todoData.push(newData);
     headerInput.value = '';
+    AddLS();    
   } else {
     alert('Введите задание');
   }  
-   
-  if (todoData === null) {
-    todoData = JSON.parse(localStorage.getItem("todoData"));
-  }
-
- //сохраняем массив в виде JSON строки
-  localStorage.setItem(todoData, JSON.stringify(todoData));
-
-  render();
+ 
+ render();
 
  });
-
-//  document.addEventListener('DOMContentLoaded', function(){
-//   
-//   console.log('ok');
-// }) 
 
 render();
