@@ -6,17 +6,21 @@ let todoControl = document.querySelector('.todo-control'),
     todoCompleted = document.querySelector('.todo-completed'),
     headerBtn = document.getElementById('add');
 
-let todoData = [
+let todoData = [];  
 
-];  
 //получаем с браузера данные, если есть (не забывать про кавычки!!!!!)
+const deleteLS = function() {
 if (localStorage.getItem("localData")) {
   todoData = JSON.parse(localStorage.getItem("localData"));
-  }
+  };
+}();
+
 //добавляем в LS
-const AddLS = function() {
+const addLS = function() {
   localStorage.setItem("localData", JSON.stringify(todoData));
+  console.log(localStorage.getItem("localData"));
 }
+
 //функция рендер уже добавленных дел и  состояний
 const render = function() {
    todoList.textContent = '';
@@ -33,24 +37,28 @@ const render = function() {
     '</div>'
     
     if (item.completed) {
-      todoCompleted.append(li);
+      todoCompleted.append(li) 
     } else {
-      todoList.append(li);
+      todoList.append(li) 
     }
 
     const btnTodoComplete = li.querySelector('.todo-complete');
     btnTodoComplete.addEventListener('click', function(){
       item.completed = !item.completed;
-
-      AddLS();
+      
+      addLS();
       render();
     })
 
   //удаляем дело по клике на корзину  
     const btnRemove = li.querySelector('.todo-remove');
-    btnRemove.addEventListener('click', function(){
-     li.remove();
-     AddLS();
+    const todoItem = document.querySelector('.todo-item');
+    btnRemove.addEventListener('click', function(event){
+      li.remove();
+      delete newData.value
+      delete newData.completed
+
+      addLS();      
             
     })
    })
@@ -68,12 +76,12 @@ todoControl.addEventListener('submit', function(event){
    if (headerInput.value !== '') {
     todoData.push(newData);
     headerInput.value = '';
-    AddLS();    
-  } else {
+    addLS();
+   } else {
     alert('Введите задание');
   }  
  
  render();
-
+  
  });
 render();
