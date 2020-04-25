@@ -3,18 +3,18 @@
 let todoControl = document.querySelector('.todo-control'),
     headerInput = document.querySelector('.header-input'),
     todoList = document.querySelector('.todo-list'),
-    todoCompleted = document.querySelector('.todo-completed');
+    todoCompleted = document.querySelector('.todo-completed'),
+    headerBtn = document.getElementById('add');
+
+
 
 const todoData = [
   {
-   value: 'Сварить кофе',
+   value: 'Погулять с собакой',
    completed: false
-  },
-  {
-   value:'Помыть посуду',
-   completed: true
 
   },
+
 ];    
 
 const render = function() {
@@ -37,12 +37,19 @@ const render = function() {
       todoList.append(li);
     }
 
+ 
     const btnTodoComplete = li.querySelector('.todo-complete');
     btnTodoComplete.addEventListener('click', function(){
       item.completed = !item.completed;
       render();
     })
-  })
+    
+    const btnRemove = li.querySelector('.todo-remove');
+    btnRemove.addEventListener('click', function(){
+      li.remove();
+      
+    })
+   })
 };  
 
 todoControl.addEventListener('submit', function(event){
@@ -52,10 +59,17 @@ todoControl.addEventListener('submit', function(event){
     value: headerInput.value,
     completed: false
    };
+ 
+   if (headerInput.value !== '') {
+    todoData.push(newData);
+    headerInput.value = '';
+  } else {
+    alert('Введите задание');
+  }  
 
-  todoData.push(newData);
-  
   render();
-});
+
+ });
+
 
 render();
