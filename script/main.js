@@ -18,7 +18,7 @@ if (localStorage.getItem("localData")) {
 //добавляем в LS
 const addLS = function() {
   localStorage.setItem("localData", JSON.stringify(todoData));
-  console.log(localStorage.getItem("localData"));
+  
 }
 
 //функция рендер уже добавленных дел и  состояний
@@ -53,12 +53,9 @@ const render = function() {
   //удаляем дело по клике на корзину  
     const btnRemove = li.querySelector('.todo-remove');
     const todoItem = document.querySelector('.todo-item');
-    btnRemove.addEventListener('click', function(event){
+    btnRemove.addEventListener('click', function() {
       li.remove();
-      delete newData.value
-      delete newData.completed
-
-      addLS();      
+       addLS();      
             
     })
    })
