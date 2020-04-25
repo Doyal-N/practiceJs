@@ -6,7 +6,7 @@ let todoControl = document.querySelector('.todo-control'),
     todoCompleted = document.querySelector('.todo-completed'),
     headerBtn = document.getElementById('add');
 
-let todoData = [];  
+let todoData = {};  
 
 //получаем с браузера данные, если есть (не забывать про кавычки!!!!!)
 const deleteLS = function() {
@@ -37,9 +37,9 @@ const render = function() {
     '</div>'
     
     if (item.completed) {
-      todoCompleted.append(li) 
+      todoCompleted.prepend(li) 
     } else {
-      todoList.append(li) 
+      todoList.prepend(li) 
     }
 
     const btnTodoComplete = li.querySelector('.todo-complete');
@@ -52,10 +52,12 @@ const render = function() {
 
   //удаляем дело по клике на корзину  
     const btnRemove = li.querySelector('.todo-remove');
-    const todoItem = document.querySelector('.todo-item');
+
     btnRemove.addEventListener('click', function() {
-      li.remove();
-       addLS();      
+     
+    todoData.splice(todoData.indexOf(item), 1);
+     li.remove();
+     addLS();      
             
     })
    })
