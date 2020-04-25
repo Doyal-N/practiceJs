@@ -9,20 +9,14 @@ let todoControl = document.querySelector('.todo-control'),
 let todoData = [
 
 ];  
-
-if (localStorage.setItem(todoData)) {
-  todoData = JSON.parse(localStorage.getItem(todoData));
-}
-
+//получаем с браузера данные, если есть (не забывать про кавычки!!!!!)
+if (localStorage.getItem("localData")) {
+  todoData = JSON.parse(localStorage.getItem("localData"));
+  }
+//добавляем в LS
 const AddLS = function() {
-  localStorage.setItem(todoData, JSON.stringify(todoData));
-  console.log(localStorage.getItem(todoData));
+  localStorage.setItem("localData", JSON.stringify(todoData));
 }
-
-const getLS = function() {
- 
-}
-
 //функция рендер уже добавленных дел и  состояний
 const render = function() {
    todoList.textContent = '';
@@ -56,7 +50,7 @@ const render = function() {
     const btnRemove = li.querySelector('.todo-remove');
     btnRemove.addEventListener('click', function(){
      li.remove();
-
+     AddLS();
             
     })
    })
@@ -82,5 +76,4 @@ todoControl.addEventListener('submit', function(event){
  render();
 
  });
-
 render();
