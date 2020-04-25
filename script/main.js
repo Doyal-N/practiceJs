@@ -20,7 +20,6 @@ const addLS = function() {
   localStorage.setItem("localData", JSON.stringify(todoData));
   
 }
-
 //функция рендер уже добавленных дел и  состояний
 const render = function() {
    todoList.textContent = '';
@@ -35,7 +34,7 @@ const render = function() {
       '<button class="todo-remove"></button>' +
       '<button class="todo-complete"></button>' +
     '</div>'
-    
+  //добавим в начало списка дел  
     if (item.completed) {
       todoCompleted.prepend(li) 
     } else {
@@ -54,8 +53,7 @@ const render = function() {
     const btnRemove = li.querySelector('.todo-remove');
 
     btnRemove.addEventListener('click', function() {
-     
-    todoData.splice(todoData.indexOf(item), 1);
+     todoData.splice(todoData.indexOf(item), 1);
      li.remove();
      addLS();      
             
