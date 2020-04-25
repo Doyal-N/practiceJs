@@ -6,7 +6,7 @@ let todoControl = document.querySelector('.todo-control'),
     todoCompleted = document.querySelector('.todo-completed'),
     headerBtn = document.getElementById('add');
 
-let todoData = {};  
+let todoData = [];  
 
 //получаем с браузера данные, если есть (не забывать про кавычки!!!!!)
 const deleteLS = function() {
