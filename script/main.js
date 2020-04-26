@@ -40,7 +40,7 @@ const render = function() {
     } else {
       todoList.prepend(li) 
     }
-
+//перемещаем между выполненными и нет делами с помощью !
     const btnTodoComplete = li.querySelector('.todo-complete');
     btnTodoComplete.addEventListener('click', function(){
       item.completed = !item.completed;
@@ -51,7 +51,7 @@ const render = function() {
 
   //удаляем дело по клике на корзину  
     const btnRemove = li.querySelector('.todo-remove');
-
+//по клику удаляем объект из массива методом splice и из верстки, записываем в LS новый результат 
     btnRemove.addEventListener('click', function() {
      todoData.splice(todoData.indexOf(item), 1);
      li.remove();
@@ -60,10 +60,10 @@ const render = function() {
     })
    })
 };  
-
+//на форму вешаем событие (по клику и кнопке Enter)
 todoControl.addEventListener('submit', function(event){
   event.preventDefault()
-
+//новый обект в массив - структура
   const newData = {
     value: headerInput.value,
     completed: false
