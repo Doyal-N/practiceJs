@@ -7,10 +7,13 @@ arr.forEach(function(item){
     console.log(item);
   }
 });
+//простые числа от 1 до 100
+let n = 100;
 
-
-let numbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
-
-numbers.forEach(function(item){
-  console.log(item + ' - делители: ' + 1 + ' и ' + item);
-})
+nextNumber:
+for ( let i = 1; i <= n; i++) {
+  for ( let b = 2; b < i; b++) {
+    if ( i % b == 0) continue nextNumber
+  } 
+  console.log('Делитель числа ' + i + ': ' + 1 + ' и ' + i);
+}
