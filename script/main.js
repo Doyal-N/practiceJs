@@ -51,7 +51,7 @@ AppData.prototype.clickStart = function() {
 
 AppData.prototype.start = function() {
           
-  appData.budget = +incomeMonthInput.value;
+  this.budget = +incomeMonthInput.value;
       
   this.getExpenses();
   this.getIncome();
@@ -239,20 +239,29 @@ AppData.prototype.resetData = function() {
            
 };
 
+AppData.prototype.eventListeners = function() {
+  buttonCalculation.addEventListener('click', appData.clickStart);
+  buttonCalculation.addEventListener('click', appData.start.bind(appData));
+  buttonCalculation.addEventListener('click', appData.btnClear);
+  buttonPlus_2.addEventListener('click', appData.addExpensesBlock);
+  buttonPlus_1.addEventListener('click', appData.addIncomeBlock);
+  rangeSelector.addEventListener('input', appData.periodSelect);
+  buttonCancel.addEventListener('click', appData.resetData);
+};
+
 const appData = new AppData();
 
-buttonCalculation.addEventListener('click', appData.clickStart);
-buttonCalculation.addEventListener('click', appData.start.bind(appData));
-buttonCalculation.addEventListener('click', appData.btnClear);
-buttonPlus_2.addEventListener('click', appData.addExpensesBlock);
-buttonPlus_1.addEventListener('click', appData.addIncomeBlock);
-rangeSelector.addEventListener('input', appData.periodSelect);
-buttonCancel.addEventListener('click', appData.resetData);
+AppData.prototype.eventListeners();
 
-//функция проверки на число
-const isNum = function(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n)
-};
+
+
+
+
+
+// //функция проверки на число
+// const isNum = function(n) {
+//   return !isNaN(parseFloat(n)) && isFinite(n)
+// };
 
 
 
