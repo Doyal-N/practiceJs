@@ -1,36 +1,37 @@
 'use strict';
 
-const DomElem = function() {
-    this.selector = '#sf';
-    this.height = 0; 
-    this.width = 0;
-    this.bg = '';
-    this.fontSize = 0;
+const DomElem = function(selector, height, width, bg, fontSize) {
+  this.selector = selector; 
+  this.height = height;
+  this.width = width;
+  this.bg = bg;
+  this.fontSize = fontSize;
 
 };
 
 DomElem.prototype.changeCondition = function() {
- if (this.selector[0] === '.') {
+  if (this.selector.charAt(0) === '.') {
   let div = document.createElement('div');
-  div.className = 'box';
+
+  div.className = this.selector.slice(1);
   div.textContent = 'Это просто блок';
-  div.style.cssText=`background-color: green;
-  height: 200px;
-  width: 300px;
-  font-size: 22px;`; 
-  document.write(div);
- } else if (this.selector[0] === '#') {
+  div.style.cssText = `height: ${this.height}; width: ${this.width}; background-color: ${this.bg}; font-size: ${this.fontSize}`;
+
+  document.querySelector('body').append(div);
+
+ } else if (this.selector.charAt(0) === '#') {
    let text = document.createElement('p');
-   text.id = 'art';
+
+   text.id = this.selector.slice(1);;
    text.textContent = 'Это параграф';
-   text.style.cssText= `background-color: grey;
-   height: 700px;
-   width: 200px;
-   font-size: 22px;`
-   document.write(text);
- }
+   text.style.cssText = `height: ${this.height}; width: ${this.width}; background-color: ${this.bg}; font-size: ${this.fontSize}`;
+
+   document.querySelector('body').append(text);
+    }
 };
 
-const domElem = new DomElem();
 
-DomElem.prototype.changeCondition();
+const domElem = new DomElem('.boxic', '300px', '400px', 'red', '22px');
+
+domElem.changeCondition();
+
