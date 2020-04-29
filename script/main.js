@@ -251,7 +251,7 @@ AppData.prototype.resetData = function() {
       titleAmount = document.querySelector('.period-amount');
 
    range.value =  1; 
-   titleAmount.textContent = 1;   
+   titleAmount.textContent = 1;  
            
 };
 
@@ -265,10 +265,28 @@ AppData.prototype.eventListeners = function() {
   buttonCancel.addEventListener('click', appData.resetData);
 };
 
+AppData.prototype.validateInput = function() {
+  let inputTitle = document.querySelectorAll('input[placeholder = "Наименование"]'),
+      inputAmount = document.querySelectorAll('input[placeholder = "Сумма"]');
+ //вводим только цифры (можно добавить алерт по необходимости)
+  inputAmount.forEach(function(item){
+    item.addEventListener('input', function(){
+      this.value = this.value.replace(/[^\d]+$/g, '')
+    });
+  })
+//вводим только буквы (алерт для общения с пользователем можно по необходимости через условие)
+inputTitle.forEach(function(item){
+  item.addEventListener('input', function(){
+  this.value = this.value.replace(/[^а-яА-Я ,]+$/g, '')
+  });
+})
+  
+}; 
+
 const appData = new AppData();
 
-AppData.prototype.eventListeners();
-
+appData.eventListeners();
+appData.validateInput();
 
 
 
