@@ -284,9 +284,9 @@ inputTitle.forEach(function(item){
 }; 
 
 const appData = new AppData();
-
-appData.eventListeners();
 appData.validateInput();
+appData.eventListeners();
+
 
 
 
