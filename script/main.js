@@ -35,7 +35,7 @@ const checkDateTime = function() {
  
  const formatTwo = `${numberDay}.${numMonth}.${numberYear} - ${hour}:${minute}:${second}`; 
 
- document.querySelector('body').append(`${formatTwo}`);
+ document.querySelector('body').append(formatTwo);
 
    }
 
