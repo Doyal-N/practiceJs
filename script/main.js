@@ -15,13 +15,16 @@
       incomePeriodInput = document.getElementsByClassName('income_period-value')[0],
       targetInput = document.getElementsByClassName('target_month-value')[0],
       incomeMonthInput = document.querySelector('.salary-amount'),
-      expensesTitleInput = document.querySelector('.expenses-title'),
+      expensesTitle = document.querySelectorAll('.expenses-title'),
+      expensesAmount = document.querySelectorAll('.expenses-amount'),
       expensesItems = document.querySelectorAll('.expenses-items'),
       additionalExpensesInput = document.querySelector('.additional_expenses-item'),
       depositInput = document.querySelector('.deposit-amount'),
       percentInput = document.querySelector('.deposit-percent'),
       goalInput = document.querySelector('.target-amount'),
       incomeItem = document.querySelectorAll('.income-items'),
+      incomeTitle = document.querySelectorAll('.income-title'),
+      incomeAmount = document.querySelectorAll('.income-amount'),
       rangeSelector = document.querySelector('.period-select'),
       inputText = document.querySelectorAll('input[type="text"]');
 
@@ -91,8 +94,15 @@ AppData.prototype.addExpensesBlock = function() {
   let cloneExpensesItem = expensesItems[0].cloneNode(true);
 
   expensesItems[0].parentNode.insertBefore(cloneExpensesItem, buttonPlus_2);
-  expensesItems = document.querySelectorAll('.expenses-items');   
+  //добавляем поля уже пустые, аналогично в Income
+  expensesTitle.forEach(function(item){
+    item.value = '';
+  });
+  expensesAmount.forEach(function(item){
+    item.value = '';
+  });
 
+  expensesItems = document.querySelectorAll('.expenses-items');   
   if (expensesItems.length === 3) {
     buttonPlus_2.style.display = 'none';
   }
@@ -100,10 +110,16 @@ AppData.prototype.addExpensesBlock = function() {
 
 AppData.prototype.addIncomeBlock = function() {
   let cloneincomeItem = incomeItem[0].cloneNode(true);
-
+     
   incomeItem[0].parentNode.append(cloneincomeItem, buttonPlus_1);
+  incomeTitle.forEach(function(item){
+    item.value = '';
+  })
+  incomeAmount.forEach(function(item){
+    item.value = '';
+  })
+
   incomeItem = document.querySelectorAll('.income-items');
-  
   if (incomeItem.length === 3) {
     buttonPlus_1.style.display = 'none';
   }
