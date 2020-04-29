@@ -13,10 +13,15 @@ let nameDay = weekDay[today.getDay()],
     minute = today.getMinutes(),
     second = today.getSeconds();
   
-let dateNow = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} час ${minute} минут ${second} секунды'`; 
-
-console.log(dateNow);    
-
+let dateNow1 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} час ${minute} минут ${second} секунды'`,
+    dateNow2 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} часов ${minute} минут ${second} секунды'`, 
+    dateNow3 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} часа ${minute} минут ${second} секунды'`;
+  
+if ( hour === 1) {
+  document.querySelector('body').append(dateNow1);
+} else if ( hour === 2 || hour === 3 || hour === 4){
+  document.querySelector('body').append(dateNow3);
+} else {document.querySelector('body').append(dateNow2)}
 
 
 
