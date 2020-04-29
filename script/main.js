@@ -1,18 +1,23 @@
 'use strict';
-//новый объект Дата и массив
-let date = new Date(2020, 3, 25),
-    weekDay = [ 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье' ];
-//функция выдает номер дня, которое выдергивает день из массива
-function showWeekDay(date) {
-  return weekDay[date.getDay()];
-}
-// перебираем массив и навещиваем свойства на отдельные дни
-weekDay.forEach(function(item){
-  if (item == weekDay[date.getDay()]) {
-    item = item.italics().bold();
-  } else if (item == weekDay[5] || item == weekDay[6]) {
-    item = item.italics()
-  }
-  document.write(item + "<br \/>");
-})
+//новый объект Дата и массивы
+const today = new Date(),
+    weekDay = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+    months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+
+//получим данные
+let nameDay = weekDay[today.getDay()],
+    numberYear = today.getFullYear(),
+    numberDay = today.getDate(),
+    nameMonth = months[today.getMonth()],
+    hour = today.getHours(),
+    minute = today.getMinutes(),
+    second = today.getSeconds();
+  
+let dateNow = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} час ${minute} минут ${second} секунды'`; 
+
+console.log(dateNow);    
+
+
+
+
 
