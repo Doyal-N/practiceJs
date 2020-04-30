@@ -18,15 +18,15 @@ let dateNow1 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYe
     dateNow2 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} часов ${minute} минут ${second} секунды'`, 
     dateNow3 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} часа ${minute} минут ${second} секунды'`;
 //функция вывода формата даты и времени на экран
-const changed = function() {
+setInterval (function() {
   if ( hour === 1 || hour === 21) {
     document.querySelector('body').append(dateNow1);
   } else if ( hour === 2 || hour === 3 || hour === 4 || hour === 22 || hour === 23){
     document.querySelector('body').append(dateNow3);
   } else {document.querySelector('body').append(dateNow2)}
-};
+}, 1000);
     
-const checkDateTime = function() { 
+let checkDateTime = function() { 
  (numberDay < 10) ? numberDay = '0' + numberDay : numberDay;
  (numMonth < 10) ? numMonth = '0' + numMonth : numMonth;
  (hour < 10) ? hour = '0' + hour : hour;
@@ -39,5 +39,4 @@ const checkDateTime = function() {
 
    }
 
-checkDateTime();
-changed();
+
