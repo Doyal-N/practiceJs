@@ -18,25 +18,40 @@ let dateNow1 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYe
     dateNow2 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} часов ${minute} минут ${second} секунды'`, 
     dateNow3 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} часа ${minute} минут ${second} секунды'`;
 //функция вывода формата даты и времени на экран
-setInterval (function() {
+ let change = function() {
   if ( hour === 1 || hour === 21) {
     document.querySelector('body').append(dateNow1);
   } else if ( hour === 2 || hour === 3 || hour === 4 || hour === 22 || hour === 23){
     document.querySelector('body').append(dateNow3);
   } else {document.querySelector('body').append(dateNow2)}
-}, 1000);
+};
     
 let checkDateTime = function() { 
- (numberDay < 10) ? numberDay = '0' + numberDay : numberDay;
- (numMonth < 10) ? numMonth = '0' + numMonth : numMonth;
- (hour < 10) ? hour = '0' + hour : hour;
- (minute < 10) ? minute = '0' + minute : minute;
- (second < 10) ? second = '0' + second : second;
+ let timeNode = document.getElementById('time-node'),
+   numberDay = today.getDate(),
+   hour = today.getHours(),
+   minute = today.getMinutes(),
+   second = today.getSeconds(),
+   numMonth = today.getMonth();
+ if (numberDay < 10) {
+  numberDay = '0' + numberDay;
+ } else if (numMonth < 10) {
+  numMonth = '0' + numMonth;
+ } else if (hour < 10) {
+  hour = '0' + hour;
+ } else if (minute < 10) {
+  minute = '0' + minute;
+ } else if (second < 10) {
+  second = '0' + second;
+ } 
+
+ let formatTwo = `${numberDay}.${numMonth}.${numberYear} - ${hour}:${minute}:${second}`; 
+ return timeNode.innerHTML = formatTwo.replace(/ .*/ - / .*/);
  
- const formatTwo = `${numberDay}.${numMonth}.${numberYear} - ${hour}:${minute}:${second}`; 
+  };
 
- document.querySelector('body').append(formatTwo);
 
-   }
+
+
 
 
