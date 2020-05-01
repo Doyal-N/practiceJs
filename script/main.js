@@ -69,9 +69,9 @@ class AppData {
   this.showResult();
  };  
 
- btnClear() {
+ btnClear () {
  let inputText = document.querySelectorAll('input[type="text"]');
-  inputText.forEach(function(item){
+  inputText.forEach(item => {
   item.disabled = true;
    });
 
@@ -90,7 +90,7 @@ class AppData {
   incomeInput.value = this.addIncome.join(', ');
   targetInput.value = Math.ceil(this.getTargetMonth());
   incomePeriodInput.value = this.calcSavedMoney();
-  rangeSelector.addEventListener('input', function(){
+  rangeSelector.addEventListener('input', () => {
   incomePeriodInput.value = _this.calcSavedMoney();
   })
       
@@ -119,7 +119,7 @@ class AppData {
 
  getExpenses() {
   const _this = this;
-  expensesItems.forEach(function(item){
+  expensesItems.forEach(item => {
    let itemExpenses = item.querySelector('.expenses-title').value;
    let cashExpenses = item.querySelector('.expenses-amount').value;
    if (itemExpenses !== '' && cashExpenses !== '') {
@@ -130,7 +130,7 @@ class AppData {
 
  getIncome() {
   const _this = this;
-  incomeItem.forEach(function(item){
+  incomeItem.forEach(item => {
     let itemIncome = item.querySelector('.income-title').value;
     let cashIncome = item.querySelector('.income-amount').value;
     if (itemIncome !== '' && cashIncome !== '') {
@@ -146,7 +146,7 @@ class AppData {
  getAddExpenses() {
   let addExpenses = additionalExpensesInput.value.split(',');
   const _this = this;
-  addExpenses.forEach(function(item){
+  addExpenses.forEach(item => {
     item = item.trim();
      if (item !== '') {
        _this.addExpenses.push(item);
@@ -156,13 +156,13 @@ class AppData {
 
  getAddIncome() {
   const _this = this;
-  strInput.forEach(function(item){
+  strInput.forEach(item => {
    let itemValue = item.value.trim();
    if (itemValue !== '') {
      _this.addIncome.push(itemValue);
    }
   });
-};
+ };
 
  getExpensesMonth() {
   for (let key in this.expenses) {
@@ -217,7 +217,7 @@ class AppData {
  resetData() {
   //обнуляем инпуты
 let inputText = document.querySelectorAll('input[type="text"]');
- inputText.forEach(function(item){
+ inputText.forEach(item => {
    item.disabled = false;
    item.value = '';
  });
@@ -258,17 +258,16 @@ let inputText = document.querySelectorAll('input[type="text"]');
 };
 
  validateInput() {
-  
- //вводим только цифры (можно добавить алерт по необходимости)
-  inputAmount.forEach(function(item){
-    item.addEventListener('input', function() {
-      this.value = this.value.replace(/[^\d]+$/g, '')
+  //вводим только цифры (можно добавить алерт по необходимости)
+  inputAmount.forEach(item => {
+    item.addEventListener('input', () => {
+      item.value = item.value.replace(/[^\d]+$/g, '')
     });
-  })
+  });
 //вводим только буквы (алерт для общения с пользователем можно по необходимости через условие)
-inputTitle.forEach(function(item){
-  item.addEventListener('input', function(){
-  this.value = this.value.replace(/[^а-яА-Я ,]+$/g, '')
+inputTitle.forEach(item => {
+  item.addEventListener('input', () => {
+  item.value = item.value.replace(/[^а-яА-Я ,]+$/g, '')
   });
 })
   }; 
@@ -282,7 +281,7 @@ appData.eventListeners();
 
 
 // //функция проверки на число
-// const isNum = function(n) {
+// const isNum = (n) => {
 //   return !isNaN(parseFloat(n)) && isFinite(n)
 // };
 
