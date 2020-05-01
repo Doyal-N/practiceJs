@@ -18,11 +18,13 @@
       expensesTitle = document.querySelectorAll('.expenses-title'),
       expensesAmount = document.querySelectorAll('.expenses-amount'),
       expensesItems = document.querySelectorAll('.expenses-items'),
+      cloneExpenses = expensesItems[0].cloneNode(true),
       additionalExpensesInput = document.querySelector('.additional_expenses-item'),
       depositInput = document.querySelector('.deposit-amount'),
       percentInput = document.querySelector('.deposit-percent'),
       goalInput = document.querySelector('.target-amount'),
       incomeItem = document.querySelectorAll('.income-items'),
+      cloneIncome = incomeItem[0].cloneNode(true),
       incomeTitle = document.querySelectorAll('.income-title'),
       incomeAmount = document.querySelectorAll('.income-amount'),
       rangeSelector = document.querySelector('.period-select'),
@@ -91,33 +93,19 @@ AppData.prototype.showResult = function() {
   };
 
 AppData.prototype.addExpensesBlock = function() {
-  let cloneExpensesItem = expensesItems[0].cloneNode(true);
-
-  expensesItems[0].parentNode.insertBefore(cloneExpensesItem, buttonPlus_2);
-  //добавляем поля уже пустые, аналогично в Income
-  expensesTitle.forEach(function(item){
-    item.value = '';
-  });
-  expensesAmount.forEach(function(item){
-    item.value = '';
-  });
-
-  expensesItems = document.querySelectorAll('.expenses-items');   
+  let cloneExpensesItem = cloneExpenses.cloneNode(true);
+  buttonPlus_2.before(cloneExpensesItem);
+     
+   expensesItems = document.querySelectorAll('.expenses-items'); 
   if (expensesItems.length === 3) {
     buttonPlus_2.style.display = 'none';
   }
 };
 
 AppData.prototype.addIncomeBlock = function() {
-  let cloneincomeItem = incomeItem[0].cloneNode(true);
+  let cloneIncomeItem = cloneIncome.cloneNode(true);
      
-  incomeItem[0].parentNode.append(cloneincomeItem, buttonPlus_1);
-  incomeTitle.forEach(function(item){
-    item.value = '';
-  })
-  incomeAmount.forEach(function(item){
-    item.value = '';
-  })
+ buttonPlus_1.before(cloneIncomeItem);
 
   incomeItem = document.querySelectorAll('.income-items');
   if (incomeItem.length === 3) {
@@ -265,9 +253,30 @@ AppData.prototype.eventListeners = function() {
   buttonCancel.addEventListener('click', appData.resetData);
 };
 
+AppData.prototype.validateInput = function() {
+  let inputTitle = document.querySelectorAll('input[placeholder = "Наименование"]'),
+      inputAmount = document.querySelectorAll('input[placeholder = "Сумма"]');
+ //вводим только цифры (можно добавить алерт по необходимости)
+  inputAmount.forEach(function(item){
+    item.addEventListener('input', function(){
+      this.value = this.value.replace(/[^\d]+$/g, '')
+    });
+  })
+//вводим только буквы (алерт для общения с пользователем можно по необходимости через условие)
+inputTitle.forEach(function(item){
+  item.addEventListener('input', function(){
+  this.value = this.value.replace(/[^а-яА-Я ,]+$/g, '')
+  });
+})
+  
+}; 
+
 const appData = new AppData();
 
-AppData.prototype.eventListeners();
+appData.validateInput();
+appData.eventListeners();
+
+
 
 
 
