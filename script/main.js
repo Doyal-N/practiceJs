@@ -28,9 +28,11 @@
       incomeTitle = document.querySelectorAll('.income-title'),
       incomeAmount = document.querySelectorAll('.income-amount'),
       rangeSelector = document.querySelector('.period-select'),
-      inputText = document.querySelectorAll('input[type="text"]');
+      inputTitle = document.querySelectorAll('input[placeholder = "Наименование"]'),
+      inputAmount = document.querySelectorAll('input[placeholder = "Сумма"]');
 
-const AppData = function() {
+class AppData {
+  constructor() {
     this.incomeMonth = 0;
     this.income = {};
     this.addIncome = [];
@@ -44,9 +46,9 @@ const AppData = function() {
     this.budgetDay = 0;
     this.expensesMonth = 0;
 
-};
+  }
 
-AppData.prototype.clickStart = function() {
+ clickStart() {
   if (incomeMonthInput.value === '') {
    alert('Поле "Месячный доход" обязательно для заполнения!')
   } else {
@@ -54,7 +56,7 @@ AppData.prototype.clickStart = function() {
    }
 };
 
-AppData.prototype.start = function() {
+ start() {
           
   this.budget = +incomeMonthInput.value;
       
@@ -67,17 +69,19 @@ AppData.prototype.start = function() {
   this.showResult();
  };  
 
-AppData.prototype.btnClear = function() {
-  inputText = document.querySelectorAll('input[type="text"]');
+ btnClear() {
+ let inputText = document.querySelectorAll('input[type="text"]');
   inputText.forEach(function(item){
   item.disabled = true;
    });
 
+  buttonPlus_1.style.display = 'none';
+  buttonPlus_2.style.display = 'none';
   buttonCalculation.style.display = 'none';
   buttonCancel.style.display = 'block';
  };
 
-AppData.prototype.showResult = function() {
+ showResult() {
   const _this = this;
   budgetMonthValue.value = this.budgetMonth;
   dayInput.value = Math.trunc(this.budgetDay);
@@ -92,7 +96,7 @@ AppData.prototype.showResult = function() {
       
   };
 
-AppData.prototype.addExpensesBlock = function() {
+ addExpensesBlock() {
   let cloneExpensesItem = cloneExpenses.cloneNode(true);
   buttonPlus_2.before(cloneExpensesItem);
      
@@ -102,7 +106,7 @@ AppData.prototype.addExpensesBlock = function() {
   }
 };
 
-AppData.prototype.addIncomeBlock = function() {
+ addIncomeBlock() {
   let cloneIncomeItem = cloneIncome.cloneNode(true);
      
  buttonPlus_1.before(cloneIncomeItem);
@@ -113,7 +117,7 @@ AppData.prototype.addIncomeBlock = function() {
   }
 };
 
-AppData.prototype.getExpenses = function() {
+ getExpenses() {
   const _this = this;
   expensesItems.forEach(function(item){
    let itemExpenses = item.querySelector('.expenses-title').value;
@@ -124,7 +128,7 @@ AppData.prototype.getExpenses = function() {
   });
 };
 
-AppData.prototype.getIncome = function() {
+ getIncome() {
   const _this = this;
   incomeItem.forEach(function(item){
     let itemIncome = item.querySelector('.income-title').value;
@@ -139,7 +143,7 @@ AppData.prototype.getIncome = function() {
   }
 }; 
 
-AppData.prototype.getAddExpenses = function() {
+ getAddExpenses() {
   let addExpenses = additionalExpensesInput.value.split(',');
   const _this = this;
   addExpenses.forEach(function(item){
@@ -150,7 +154,7 @@ AppData.prototype.getAddExpenses = function() {
   });
 };
 
-AppData.prototype.getAddIncome = function() {
+ getAddIncome() {
   const _this = this;
   strInput.forEach(function(item){
    let itemValue = item.value.trim();
@@ -160,22 +164,22 @@ AppData.prototype.getAddIncome = function() {
   });
 };
 
-AppData.prototype.getExpensesMonth = function() {
+ getExpensesMonth() {
   for (let key in this.expenses) {
       this.expensesMonth += +this.expenses[key];
   }
 };
 
-AppData.prototype.getBudget = function() {
+ getBudget() {
   this.budgetMonth = (this.budget + this.incomeMonth) - this.expensesMonth;
   this.budgetDay = Math.trunc(this.budgetMonth / 30);
   };
 
-AppData.prototype.getTargetMonth = function() {
+ getTargetMonth() {
   return goalInput.value / this.budget
 };  
 
-AppData.prototype.getStatusIncome = function() {
+ getStatusIncome() {
   if (this.budgetDay >= 1200) {
       return ('У вас высокий уровень дохода');
   } else if (this.budgetDay >= 600) {
@@ -187,7 +191,7 @@ AppData.prototype.getStatusIncome = function() {
   }
  };
 
-AppData.prototype.getInfoDeposit = function() {
+ getInfoDeposit() {
   this.deposit = confirm('Есть ли у вас депозит в банке?');
   if (this.deposit) {
     do {
@@ -199,20 +203,20 @@ AppData.prototype.getInfoDeposit = function() {
   }
 };
 
-AppData.prototype.calcSavedMoney = function() {
+ calcSavedMoney() {
   return this.budgetMonth * rangeSelector.value
  };
 
-AppData.prototype.periodSelect = function() {
+ periodSelect() {
   let range = document.querySelector('.period-select').value;
   let titleAmount = document.querySelector('.period-amount');
 
   titleAmount.textContent= range;
 };
 
-AppData.prototype.resetData = function() {
+ resetData() {
   //обнуляем инпуты
- inputText = document.querySelectorAll('input[type="text"]');
+let inputText = document.querySelectorAll('input[type="text"]');
  inputText.forEach(function(item){
    item.disabled = false;
    item.value = '';
@@ -243,7 +247,7 @@ AppData.prototype.resetData = function() {
            
 };
 
-AppData.prototype.eventListeners = function() {
+ eventListeners() {
   buttonCalculation.addEventListener('click', appData.clickStart);
   buttonCalculation.addEventListener('click', appData.start.bind(appData));
   buttonCalculation.addEventListener('click', appData.btnClear);
@@ -253,12 +257,11 @@ AppData.prototype.eventListeners = function() {
   buttonCancel.addEventListener('click', appData.resetData);
 };
 
-AppData.prototype.validateInput = function() {
-  let inputTitle = document.querySelectorAll('input[placeholder = "Наименование"]'),
-      inputAmount = document.querySelectorAll('input[placeholder = "Сумма"]');
+ validateInput() {
+  
  //вводим только цифры (можно добавить алерт по необходимости)
   inputAmount.forEach(function(item){
-    item.addEventListener('input', function(){
+    item.addEventListener('input', function() {
       this.value = this.value.replace(/[^\d]+$/g, '')
     });
   })
@@ -268,18 +271,13 @@ inputTitle.forEach(function(item){
   this.value = this.value.replace(/[^а-яА-Я ,]+$/g, '')
   });
 })
-  
-}; 
+  }; 
+ };
 
 const appData = new AppData();
 
 appData.validateInput();
 appData.eventListeners();
-
-
-
-
-
 
 
 
