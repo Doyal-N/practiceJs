@@ -95,27 +95,25 @@ class AppData {
       
   };
 
- addExpensesBlock() {
-  let cloneExpensesItem = cloneExpenses.cloneNode(true);
-
-      buttonPlus[1].before(cloneExpensesItem);
-        
+  addBlock() {
+    buttonPlus[0].addEventListener('click', () => {
+     let cloneIncomeItem = cloneIncome.cloneNode(true);
+      buttonPlus[0].before(cloneIncomeItem);
+     incomeItem = document.querySelectorAll('.income-items');
+       if (incomeItem.length === 3) {
+         buttonPlus[0].style.display = 'none';
+       }
+    });
+     
+    buttonPlus[1].addEventListener('click', () =>{
+    let cloneExpensesItem = cloneExpenses.cloneNode(true);
+     buttonPlus[1].before(cloneExpensesItem);
    expensesItems = document.querySelectorAll('.expenses-items'); 
-  if (expensesItems.length === 3) {
+   if (expensesItems.length === 3) {
     buttonPlus[1].style.display = 'none';
   }
-};
-
- addIncomeBlock() {
-  let cloneIncomeItem = cloneIncome.cloneNode(true);
-     
- buttonPlus[0].before(cloneIncomeItem);
-
-  incomeItem = document.querySelectorAll('.income-items');
-  if (incomeItem.length === 3) {
-    buttonPlus[0].style.display = 'none';
-  }
-};
+    });
+   };
 
  getExpenses_Income() {
    const count = (item) => {
@@ -243,8 +241,6 @@ let inputText = document.querySelectorAll('input[type="text"]');
   buttonCalculation.addEventListener('click', appData.clickStart);
   buttonCalculation.addEventListener('click', appData.start.bind(appData));
   buttonCalculation.addEventListener('click', appData.btnClear);
-  buttonPlus[1].addEventListener('click', appData.addExpensesBlock);
-  buttonPlus[0].addEventListener('click', appData.addIncomeBlock);
   rangeSelector.addEventListener('input', appData.periodSelect);
   buttonCancel.addEventListener('click', appData.resetData);
 };
@@ -266,7 +262,7 @@ let inputText = document.querySelectorAll('input[type="text"]');
  };
 
 const appData = new AppData();
-
+appData.addBlock();
 appData.validateInput();
 appData.eventListeners();
 
