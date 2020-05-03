@@ -3,8 +3,7 @@
 //получение элементов документа
   let buttonCalculation = document.getElementById('start'),
       buttonCancel = document.getElementById('cancel'),
-      buttonPlus_1 = document.getElementsByTagName('button')[0],
-      buttonPlus_2 = document.getElementsByTagName('button')[1],
+      buttonPlus = document.querySelectorAll('.btn_plus'),
       checkbox = document.querySelector('#deposit-check'),
       strInput = document.querySelectorAll('.additional_income-item'),
       budgetMonthValue = document.querySelector('.budget_month-value'),
@@ -75,8 +74,8 @@ class AppData {
   item.disabled = true;
    });
 
-  buttonPlus_1.style.display = 'none';
-  buttonPlus_2.style.display = 'none';
+  buttonPlus[0].style.display = 'none';
+  buttonPlus[1].style.display = 'none';
   buttonCalculation.style.display = 'none';
   buttonCancel.style.display = 'block';
  };
@@ -99,22 +98,22 @@ class AppData {
  addExpensesBlock() {
   let cloneExpensesItem = cloneExpenses.cloneNode(true);
 
-      buttonPlus_2.before(cloneExpensesItem);
+      buttonPlus[1].before(cloneExpensesItem);
         
    expensesItems = document.querySelectorAll('.expenses-items'); 
   if (expensesItems.length === 3) {
-    buttonPlus_2.style.display = 'none';
+    buttonPlus[1].style.display = 'none';
   }
 };
 
  addIncomeBlock() {
   let cloneIncomeItem = cloneIncome.cloneNode(true);
      
- buttonPlus_1.before(cloneIncomeItem);
+ buttonPlus[0].before(cloneIncomeItem);
 
   incomeItem = document.querySelectorAll('.income-items');
   if (incomeItem.length === 3) {
-    buttonPlus_1.style.display = 'none';
+    buttonPlus[0].style.display = 'none';
   }
 };
 
@@ -134,7 +133,6 @@ class AppData {
    for (let key in _this.income) {
     _this.incomeMonth += +_this.income[key];
   }
-
   };
 
  getAddExpenses() {
@@ -229,9 +227,9 @@ let inputText = document.querySelectorAll('input[type="text"]');
   } 
 
   //возвращаем кнопки +
-  buttonPlus_1.style.display = 'block';
-  buttonPlus_2.style.display = 'block';
-
+  buttonPlus[0].style.display = 'block';
+  buttonPlus[1].style.display = 'block';
+  
   //скидываем ползунок
   let range = document.querySelector('.period-select'),
       titleAmount = document.querySelector('.period-amount');
@@ -245,8 +243,8 @@ let inputText = document.querySelectorAll('input[type="text"]');
   buttonCalculation.addEventListener('click', appData.clickStart);
   buttonCalculation.addEventListener('click', appData.start.bind(appData));
   buttonCalculation.addEventListener('click', appData.btnClear);
-  buttonPlus_2.addEventListener('click', appData.addExpensesBlock);
-  buttonPlus_1.addEventListener('click', appData.addIncomeBlock);
+  buttonPlus[1].addEventListener('click', appData.addExpensesBlock);
+  buttonPlus[0].addEventListener('click', appData.addIncomeBlock);
   rangeSelector.addEventListener('input', appData.periodSelect);
   buttonCancel.addEventListener('click', appData.resetData);
 };
