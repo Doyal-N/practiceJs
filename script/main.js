@@ -30,6 +30,7 @@
       rangeSelector = document.querySelector('.period-select'),
       inputTitle = document.querySelectorAll('input[placeholder = "Наименование"]'),
       inputAmount = document.querySelectorAll('input[placeholder = "Сумма"]');
+     
 
 class AppData {
   constructor() {
@@ -98,8 +99,9 @@ class AppData {
 
  addExpensesBlock() {
   let cloneExpensesItem = cloneExpenses.cloneNode(true);
-  buttonPlus_2.before(cloneExpensesItem);
-     
+
+      buttonPlus_2.before(cloneExpensesItem);
+        
    expensesItems = document.querySelectorAll('.expenses-items'); 
   if (expensesItems.length === 3) {
     buttonPlus_2.style.display = 'none';
@@ -258,14 +260,14 @@ let inputText = document.querySelectorAll('input[type="text"]');
 };
 
  validateInput() {
-  //вводим только цифры (можно добавить алерт по необходимости)
+   //вводим только цифры (можно добавить алерт по необходимости)
   inputAmount.forEach(item => {
-    item.addEventListener('input', () => {
+      item.addEventListener('input', () => {
       item.value = item.value.replace(/[^\d]+$/g, '')
     });
   });
 //вводим только буквы (алерт для общения с пользователем можно по необходимости через условие)
-inputTitle.forEach(item => {
+ inputTitle.forEach(item => {
   item.addEventListener('input', () => {
   item.value = item.value.replace(/[^а-яА-Я ,]+$/g, '')
   });
@@ -281,9 +283,8 @@ appData.eventListeners();
 
 
 // //функция проверки на число
-// const isNum = (n) => {
-//   return !isNaN(parseFloat(n)) && isFinite(n)
-// };
+// const isNum = (n) => !isNaN(parseFloat(n)) && isFinite(n);
+
 
 
 
