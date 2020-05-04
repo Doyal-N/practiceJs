@@ -1,5 +1,5 @@
 'use strict';
-
+//создаем Класс и на основе него объект
 class First {
  constructor() {}
 
@@ -9,6 +9,7 @@ class First {
 
   };
 const first = new First();
+//расширяем класс на основе предыдущего
 class Second extends First {
  constructor() {
   super();
