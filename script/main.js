@@ -223,6 +223,15 @@ let inputText = document.querySelectorAll('input[type="text"]');
     expensesItems[i].remove()
   } 
 
+  //убираем строки депозит и обнуляем
+  depositInput.style.display = 'none';
+  depositBank.style.display = 'none';
+  percentInput.style.display = 'none';
+  depositInput.value = '';
+  depositBank.value = '';
+  percentInput.value = '';
+  checkbox.checked = false;
+
   //возвращаем кнопки +
   buttonPlus[0].style.display = 'block';
   buttonPlus[1].style.display = 'block';
@@ -236,10 +245,20 @@ let inputText = document.querySelectorAll('input[type="text"]');
            
 };
 
-changePercent() {
+ changePercent() {
   const valueSelect = this.value;
   if (valueSelect === 'other') {
-
+  percentInput.style.display = 'inline-block';
+  this.percentDeposit = percentInput.value;
+  percentInput.addEventListener('input', () => {
+   percentInput.value = percentInput.value.replace(/[^\d]+$/g, '');
+    if (percentInput.value > 100) {
+      alert('Введите корректный процент');
+      buttonCalculation.disabled = true;
+    } else {
+      buttonCalculation.disabled = false;
+    }
+  });  
   } else {
   percentInput.value = valueSelect;
   }
@@ -254,8 +273,10 @@ changePercent() {
    } else {
     depositInput.style.display = 'none';
     depositBank.style.display = 'none';
+    percentInput.style.display = 'none';
     depositInput.value = '';
     depositBank.value = '';
+    percentInput.value = '';
     this.deposit = false;
     depositBank.removeEventListener('change', this.changePercent);
    }
