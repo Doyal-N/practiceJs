@@ -13,11 +13,13 @@ let nameDay = weekDay[today.getDay()],
     minute = today.getMinutes(),
     second = today.getSeconds(),
     numMonth = today.getMonth();
+
  //переменные в зависимости от склонения 
 let dateNow1 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} час ${minute} минут ${second} секунды'`,
     dateNow2 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} часов ${minute} минут ${second} секунды'`, 
     dateNow3 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYear} года, ${hour} часа ${minute} минут ${second} секунды'`;
-//функция вывода формата даты и времени на экран
+
+ //функция вывода формата даты и времени на экран
  let change = function() {
   if ( hour === 1 || hour === 21) {
     document.querySelector('body').append(dateNow1);
@@ -27,16 +29,16 @@ let dateNow1 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYe
 };
 
 change();
-    
+
+ //второй вариант написания времени и даты   
 let checkDateTime = function() { 
  let timeNode = document.getElementById('time-node'),
      date = today.toLocaleDateString(),
      time = today.toLocaleTimeString();
   
-
 timeNode.textContent = `'${date} - ${time}'`     
 
-  };
+};
  
 checkDateTime();
 
