@@ -25,32 +25,20 @@ let dateNow1 = `'Сегодня ${nameDay}, ${numberDay} ${nameMonth} ${numberYe
     document.querySelector('body').append(dateNow3);
   } else {document.querySelector('body').append(dateNow2)}
 };
+
+change();
     
 let checkDateTime = function() { 
  let timeNode = document.getElementById('time-node'),
-   numberDay = today.getDate(),
-   hour = today.getHours(),
-   minute = today.getMinutes(),
-   second = today.getSeconds(),
-   numMonth = today.getMonth();
- if (numberDay < 10) {
-  numberDay = '0' + numberDay;
- } else if (numMonth < 10) {
-  numMonth = '0' + numMonth;
- } else if (hour < 10) {
-  hour = '0' + hour;
- } else if (minute < 10) {
-  minute = '0' + minute;
- } else if (second < 10) {
-  second = '0' + second;
- } 
+     date = today.toLocaleDateString(),
+     time = today.toLocaleTimeString();
+  
 
- let formatTwo = `${numberDay}.${numMonth}.${numberYear} - ${hour}:${minute}:${second}`; 
- return timeNode.innerHTML = formatTwo.replace(/ .*/ - / .*/);
- 
+timeNode.textContent = `'${date} - ${time}'`     
+
   };
-
-
+ 
+checkDateTime();
 
 
 
