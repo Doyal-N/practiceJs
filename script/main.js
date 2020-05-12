@@ -5,8 +5,9 @@ window.addEventListener('DOMContentLoaded', function() {
 function countTimer(deadline) {
    let timerHours = document.querySelector('#timer-hours'),
        timerMinutes = document.querySelector('#timer-minutes'),
-       timerSeconds = document.querySelector('#timer-seconds'),
-       interval = setInterval(updateClock, 1000);
+       timerSeconds = document.querySelector('#timer-seconds');
+       interval2 = setInterval(updateClock, 1000);
+      
 
    //получаем остаток времени вычисляя разницу
   function getTimeRemaining() { 
@@ -32,17 +33,16 @@ function countTimer(deadline) {
       if (timer.timeRemaining <= 0) {
       clearInterval(interval);
        deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
-       countTimer(deadline);
+      countTimer(deadline);
       
      }      
-   
+     
    };  
   updateClock();
- 
+  
    }
- 
-  interval = setInterval(countTimer, 1000, '12 may 2020 15:38');
-
+  
+  let interval = setInterval(countTimer, 1000, '12 may 2020 19:03');
 
 
 
