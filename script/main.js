@@ -9,7 +9,7 @@ function countTimer(deadline) {
        interval = setInterval(updateClock, 1000);
 
    //получаем остаток времени вычисляя разницу
-  function getTimeRemaining() {   
+  function getTimeRemaining() { 
    let dateStop = new Date(deadline).getTime(),
        dateNow = new Date().getTime(),
        timeRemaining = (dateStop - dateNow) / 1000,
@@ -20,7 +20,7 @@ function countTimer(deadline) {
        return {timeRemaining, days, hours, minutes, seconds};
        
       }; 
-      
+     
   //отображаем на экране по заданному стандарту, используя условия
   function updateClock() {
       let timer = getTimeRemaining();
@@ -28,18 +28,20 @@ function countTimer(deadline) {
       timerHours.textContent = ('0' + timer.hours).slice(-2);
       timerMinutes.textContent = ('0' + timer.minutes).slice(-2);
       timerSeconds.textContent = ('0' + timer.seconds).slice(-2);
-     
-      if (timer.timeRemaining <= 0) {
-        timerHours.textContent = '00';
-        timerMinutes.textContent = '00';
-        timerSeconds.textContent = '00';
 
-        clearInterval(interval);
-     }
-    };    
-   }
+      if (timer.timeRemaining <= 0) {
+      clearInterval(interval);
+       deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
+       countTimer(deadline);
+      
+     }      
    
- interval = setInterval(countTimer, 1000, '11 may 2020 12:59');
+   };  
+  updateClock();
+ 
+   }
+ 
+  interval = setInterval(countTimer, 1000, '12 may 2020 15:38');
 
 
 
