@@ -1,17 +1,15 @@
-window.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   'use strict';
   
   //Timer
-function countTimer(deadline) {
+const countTimer = (deadline) => {
    let timerHours = document.querySelector('#timer-hours'),
        timerMinutes = document.querySelector('#timer-minutes'),
        timerSeconds = document.querySelector('#timer-seconds'),
        interval;
-       
-      
-
+  
    //получаем остаток времени вычисляя разницу
-  function getTimeRemaining() { 
+ const getTimeRemaining = () => { 
    let dateStop = new Date(deadline).getTime(),
        dateNow = new Date().getTime(),
        timeRemaining = (dateStop - dateNow) / 1000,
@@ -24,7 +22,7 @@ function countTimer(deadline) {
       }; 
      
   //отображаем на экране по заданному стандарту, используя условия
-  function updateClock() {
+ const updateClock = () => {
       let timer = getTimeRemaining();
 
       timerHours.textContent = ('0' + timer.hours).slice(-2);
@@ -44,9 +42,20 @@ function countTimer(deadline) {
   interval = setInterval(updateClock, 1000);
    }
   
-countTimer('4 may 2020 20:57')
+ countTimer('14 may 2020 20:57')
 
+//Menu
+const toggleMenu = () => {
+  const btnMenu = document.querySelector('.menu'),
+        menu = document.querySelector('menu');
 
+  btnMenu.addEventListener('click', () => {
+   menu.style.transform = 'translate(0)'
+  });      
+
+};
+
+toggleMenu();
 
 
 
