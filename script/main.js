@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
   
-//Timer
+//TIMER
  const countTimer = (deadline) => {
    let timerHours = document.querySelector('#timer-hours'),
        timerMinutes = document.querySelector('#timer-minutes'),
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
  countTimer('14 may 2020 20:57')
 
-//Menu
+//MENU
  const toggleMenu = () => {
   const btnMenu = document.querySelector('.menu'),
         menu = document.querySelector('menu'),
@@ -66,15 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 toggleMenu();
 
-//Pop-up
+//POPUP
  const togglePopUp = () => {
    const popup = document.querySelector('.popup'),
-   popupBtn = document.querySelectorAll('.popup-btn'),
-   popupCloseBtn = document.querySelector('.popup-close'),
-   contentPopUp = document.querySelector('.popup-content');
-   
+        popupBtn = document.querySelectorAll('.popup-btn'),
+        popupCloseBtn = document.querySelector('.popup-close'),
+        contentPopUp = document.querySelector('.popup-content'),
+        width = screen.width;
+        
+        console.log(width);
  let count = 120;
- 
+ //анимация popup справа
  const animatePopUp = () => {
  let animate = requestAnimationFrame(animatePopUp);
    count = count - 5;
@@ -86,20 +88,43 @@ toggleMenu();
    }
  };
 
+  //исходные настройки окна
+  const resetAnimatePopUp = () => {
+    popup.style.display = 'none';
+    contentPopUp.style.left = '120%';
+    togglePopUp();
+  }; 
+
+  //открытие окна без анимации
+  const nonAnimateModal = () => {
+    popupBtn.forEach((elem) => {
+      elem.addEventListener('click', () => {
+       popup.style.display = 'block';
+      });
+    });
+   };
+
     //перебор и анимация окна
    popupBtn.forEach((elem) => {
-    elem.addEventListener('click', animatePopUp);
+    if (width > 768) {
+      elem.addEventListener('click', animatePopUp);
+     } else {
+       elem.addEventListener('click', nonAnimateModal);
+     }
+    
    });
 
    //закрытие модального окна
    popupCloseBtn.addEventListener('click', () => {
-     popup.style.display = 'none';
-     contentPopUp.style.left = '120%';
-     togglePopUp();
+     if (width > 768) {
+       resetAnimatePopUp();
+     } else {
+      popup.style.display = 'none';
+     } 
    });
 
  };
- 
+
  togglePopUp();
 
 
@@ -123,6 +148,5 @@ toggleMenu();
 
 
 
-
   
-})
+});
