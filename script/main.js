@@ -70,16 +70,32 @@ toggleMenu();
  const togglePopUp = () => {
    const popup = document.querySelector('.popup'),
    popupBtn = document.querySelectorAll('.popup-btn'),
-   popupCloseBtn = document.querySelector('.popup-close');
+   popupCloseBtn = document.querySelector('.popup-close'),
+   contentPopUp = document.querySelector('.popup-content');
+   
+ let count = 120;
+ 
+ const animatePopUp = () => {
+ let animate = requestAnimationFrame(animatePopUp);
+   count = count - 5;
+   if (count > 40) {
+     popup.style.display = 'block'
+     contentPopUp.style.left = `${count}%`;
+   } else {
+     cancelAnimationFrame(animate);
+   }
+ };
 
-   popupBtn.forEach((elem) =>{
-    elem.addEventListener('click', () => {
-     popup.style.display = 'block';
-    });
+    //перебор и анимация окна
+   popupBtn.forEach((elem) => {
+    elem.addEventListener('click', animatePopUp);
    });
 
+   //закрытие модального окна
    popupCloseBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
+     popup.style.display = 'none';
+     contentPopUp.style.left = '120%';
+     togglePopUp();
    });
 
  };
