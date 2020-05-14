@@ -74,8 +74,7 @@ toggleMenu();
         contentPopUp = document.querySelector('.popup-content'),
         width = screen.width;
         
-        console.log(width);
- let count = 120;
+  let count = 120;
  //анимация popup справа
  const animatePopUp = () => {
  let animate = requestAnimationFrame(animatePopUp);
