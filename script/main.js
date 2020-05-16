@@ -55,23 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }; 
     };  
 
-//навешиваем события 
+//навешиваем событие 
  const closeAndOpenMenu = () => {
   menu.forEach((item) => {
     item.addEventListener('click', (event) => {
      let target = event.target;
-     if (target.classList.contains('scroll') || target.classList.contains('close-btn') || target.tagName === 'IMG') {
+     if (target.classList.contains('scroll') || target.classList.contains('close-btn') || target.tagName === 'IMG'|| (!target.closest('active-menu')) ) {
        handlerMenu();
-     }
-    })
+     } 
+     });
   })
  };
  closeAndOpenMenu();
 
  };
 toggleMenu();
-
-
 
 //POPUP
  const togglePopUp = () => {
