@@ -116,21 +116,31 @@ toggleMenu();
 
    //закрытие модального окна
    popupCloseBtn.addEventListener('click', () => {
-     if (width > 768) {
+   if (width > 768) {
        resetAnimatePopUp();
-     } else {
+     }else {
       popup.style.display = 'none';
      } 
    });
 
- };
+   //закрытие окна по клику вне него
+   popup.addEventListener('click', (event) => {
+     let target = event.target;
+     target = target.closest('.popup-content');
+     if (!target) {
+       resetAnimatePopUp();
+     }
+   })
+ 
+  };
 
  togglePopUp();
 
 //SCROLL
-const hrefs = document.querySelectorAll('.scroll'),
-scrollDown = document.querySelector('.scroll-down'),
-service = document.getElementById('service-block');
+ const scroll = () => {
+  const hrefs = document.querySelectorAll('.scroll'),
+ scrollDown = document.querySelector('.scroll-down'),
+ service = document.getElementById('service-block');
 
 //перебор листа и скролл по ссылкам меню
  for (let i = 0; i < hrefs.length; i++) {
@@ -147,6 +157,9 @@ service = document.getElementById('service-block');
    event.preventDefault();
    service.scrollIntoView({behavior: 'smooth', block: 'start'});
  })
+
+ };
+scroll();
 
 //TABS
  const tabs = () => {
@@ -166,11 +179,13 @@ service = document.getElementById('service-block');
        }
      }
    };
-   
+
  //переключение по клике на таб
    tabHeader.addEventListener('click', (event) => {
      let target = event.target;
-     if (target.classList.contains('service-header-tab')) {
+         target = target.closest('.service-header-tab');
+
+     if (target) {
        tab.forEach((item, i) => {
          if (item === target) {
            toggleTabContent(i);
