@@ -148,8 +148,41 @@ service = document.getElementById('service-block');
    service.scrollIntoView({behavior: 'smooth', block: 'start'});
  })
 
+//TABS
+ const tabs = () => {
+   const tabHeader = document.querySelector('.service-header'),
+     tab = tabHeader.querySelectorAll('.service-header-tab'),
+     tabContent = document.querySelectorAll('.service-tab');
+
+ //ищем нужный таб с содержимым
+   const toggleTabContent = (index) => {
+     for (let i = 0; i < tabContent.length; i++) {
+       if (index === i) {
+         tab[i].classList.add('active');
+         tabContent[i].classList.remove('d-none');
+       } else {
+         tabContent[i].classList.add('d-none');
+         tab[i].classList.remove('active');
+       }
+     }
+   };
+   
+ //переключение по клике на таб
+   tabHeader.addEventListener('click', (event) => {
+     let target = event.target;
+     if (target.classList.contains('service-header-tab')) {
+       tab.forEach((item, i) => {
+         if (item === target) {
+           toggleTabContent(i);
+         }
+       });
+     }
+   });
 
 
+ };
+
+ tabs();
 
 
 
