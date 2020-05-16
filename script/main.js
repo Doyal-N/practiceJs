@@ -57,18 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //навешиваем события 
  const closeAndOpenMenu = () => {
-   for (let i = 0; i < menu.length; i++) {
-    menu[i].addEventListener('click', (event) => {
-      let target = event.target; 
-     if (target.classList.contains('scroll') || target.classList.contains('close-btn') || target.tagName === 'IMG')  {
-        handlerMenu();
-     } 
-    });
-   };
- }
+  menu.forEach((item) => {
+    item.addEventListener('click', (event) => {
+     let target = event.target;
+     if (target.classList.contains('scroll') || target.classList.contains('close-btn') || target.tagName === 'IMG') {
+       handlerMenu();
+     }
+    })
+  })
+ };
  closeAndOpenMenu();
-};
+
+ };
 toggleMenu();
+
+
 
 //POPUP
  const togglePopUp = () => {
