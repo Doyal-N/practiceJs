@@ -70,8 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 };
 toggleMenu();
 
-
-
 //POPUP
  const togglePopUp = () => {
    const popup = document.querySelector('.popup'),
