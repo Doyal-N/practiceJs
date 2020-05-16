@@ -47,24 +47,27 @@ document.addEventListener('DOMContentLoaded', () => {
 //MENU
  const toggleMenu = () => {
   const btnMenu = document.querySelector('.menu'),
-        menu = document.querySelector('menu'),
-        closeBtn = document.querySelector('.close-btn'),
-        menuItems = menu.querySelectorAll('ul>li');
-
+        menu = document.querySelector('menu');
+     
   //проверяет наличие свойства, добавление-удаление свойства
   const handlerMenu = () => { menu.classList.toggle('active-menu') };     
 
-  //закрытие-открытие по кнопкам
+  //закрытие-открытие по кнопкам  
   btnMenu.addEventListener('click', handlerMenu); 
-  closeBtn.addEventListener('click', handlerMenu);
-
-  //закрытие-переход по пунктам меню (цикл либо перебор foreach)
-  for(let i = 0; i < menuItems.length; i++) {
-    menuItems[i].addEventListener('click', handlerMenu);
-  }
+ 
+ const closeMenu = () => {
+    menu.addEventListener('click', (event) => {
+    let target = event.target; 
+    if (target.classList.contains('scroll') || target.classList.contains('close-btn')) {
+      handlerMenu();
+    } 
+  })
+ }
+ closeMenu();
 };
-
 toggleMenu();
+
+
 
 //POPUP
  const togglePopUp = () => {
