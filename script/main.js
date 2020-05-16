@@ -46,24 +46,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //MENU
  const toggleMenu = () => {
-  const btnMenu = document.querySelector('.menu'),
-        menu = document.querySelector('menu');
-     
+  const menu = document.querySelectorAll('#menu');
+    
   //проверяет наличие свойства, добавление-удаление свойства
-  const handlerMenu = () => { menu.classList.toggle('active-menu') };     
+  const handlerMenu = () => { 
+    for (let i = 0; i < menu.length; i++) {
+      menu[i].classList.toggle('active-menu') 
+    }; 
+    };  
 
-  //закрытие-открытие по кнопкам  
-  btnMenu.addEventListener('click', handlerMenu); 
- 
- const closeMenu = () => {
-    menu.addEventListener('click', (event) => {
-    let target = event.target; 
-    if (target.classList.contains('scroll') || target.classList.contains('close-btn')) {
-      handlerMenu();
-    } 
-  })
+//навешиваем события 
+ const closeAndOpenMenu = () => {
+   for (let i = 0; i < menu.length; i++) {
+    menu[i].addEventListener('click', (event) => {
+      let target = event.target; 
+     if (target.classList.contains('scroll') || target.classList.contains('close-btn') || target.tagName === 'IMG')  {
+        handlerMenu();
+     } 
+    });
+   };
  }
- closeMenu();
+ closeAndOpenMenu();
 };
 toggleMenu();
 
