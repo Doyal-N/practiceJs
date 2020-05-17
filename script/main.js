@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   menu.forEach((item) => {
     item.addEventListener('click', (event) => {
      let target = event.target;
-     if (target.matches('.scroll', '.close-btn') || target.tagName === 'IMG'|| (!target.closest('active-menu'))) {
+     if (target.matches('.scroll, .close-btn') || target.tagName === 'IMG'|| (!target.closest('active-menu'))) {
        handlerMenu();
      } 
      });
@@ -225,10 +225,13 @@ scroll();
   const autoPlaySlide = () => {
     prevSlide(slide, currentSlide, 'portfolio-item-active');
     prevSlide(dot, currentSlide, 'dot-active');
+
     currentSlide++;
+
     if (currentSlide >= slide.length) {
       currentSlide = 0;
     }
+
     nextSlide(slide, currentSlide, 'portfolio-item-active');
     nextSlide(dot, currentSlide, 'dot-active');
 
@@ -247,9 +250,9 @@ scroll();
     let target;
     target = event.target;
 
-    if(!target.matches('.portfolio-btn', '.dot')) {
+    if(!target.matches('.portfolio-btn, .dot')) {
       return;
-    }
+    } 
 
     prevSlide(slide, currentSlide, 'portfolio-item-active');
     prevSlide(dot, currentSlide, 'dot-active');
@@ -292,7 +295,7 @@ scroll();
   
   // startSlide();
 
- };
+  };
 
  slider();
 
