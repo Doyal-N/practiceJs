@@ -204,6 +204,19 @@ scroll();
 
  tabs();
 
+ //SLIDER
+ const slider = () => {
+  const slide = document.querySelectorAll('.portfolio-item'),
+   slideBtn = document.querySelectorAll('.portfolio-btn'),
+   dot = document.querySelectorAll('.dot'),
+   slider = document.querySelectorAll('.portfolio-conten');
+
+  let currentSlide = 0;
+    
+
+ };
+
+ slider();
 
 
 
