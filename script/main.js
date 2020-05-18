@@ -206,14 +206,12 @@ scroll();
 
  //SLIDER
  const slider = () => {
-  const slideBtn = document.querySelectorAll('.portfolio-btn'),   
-         slider = document.querySelector('.portfolio-content'),
+  const  slider = document.querySelector('.portfolio-content'),
          dotsBox = document.querySelector('.portfolio-dots');
 
    let slide = document.querySelectorAll('.portfolio-item'),
         dot = document.querySelectorAll('.dot'),
         currentSlide = 0,
-        currentDot = 0,
         interval;
 
 const createDot = () => {
@@ -247,6 +245,7 @@ addDot();
   };
 
   const autoPlaySlide = () => {
+   
     prevSlide(slide, currentSlide, 'portfolio-item-active');
     prevSlide(dot, currentSlide, 'dot-active');
 
@@ -277,7 +276,7 @@ addDot();
     if(!target.matches('.portfolio-btn, .dot')) {
       return;
     } 
-    
+
     prevSlide(slide, currentSlide, 'portfolio-item-active');
     prevSlide(dot, currentSlide, 'dot-active');
     
@@ -301,6 +300,9 @@ addDot();
     if (currentSlide < 0) {
       currentSlide = slide.length - 1;
     }
+
+    slide = document.querySelectorAll('.portfolio-item'),
+    dot = document.querySelectorAll('.dot');
 
     nextSlide(slide, currentSlide, 'portfolio-item-active');
     nextSlide(dot, currentSlide, 'dot-active');
