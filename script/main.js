@@ -213,24 +213,31 @@ scroll();
    let slide = document.querySelectorAll('.portfolio-item'),
         dot = document.querySelectorAll('.dot'),
         currentSlide = 0,
+        currentDot = 0,
         interval;
 
-   const createDot = () => {
-    let li = document.createElement('li');
-    li.classList.add('dot');
-    dotsBox.append(li);
-   };   
-   
-   const addDot = () => {
-    slide.forEach(() => {
-      slide = document.querySelectorAll('.portfolio-item'),
-      dot = document.querySelectorAll('.dot');
-      if (slide.length !== dot.length) {createDot()};
-    });
-   };
+const createDot = () => {
+  let li = document.createElement('li');
+  li.classList.add('dot');
+  dotsBox.append(li);
+  dot.forEach(() => {
+    dot[0].classList.add('dot-active');
+  })
+};
 
-   addDot();
-    
+const addDot = () => {
+  slide.forEach(() => {
+    slide = document.querySelectorAll('.portfolio-item'),
+      dot = document.querySelectorAll('.dot');
+
+    if (slide.length !== dot.length) {
+      createDot();
+    }
+  });
+};
+
+addDot();
+      
   const prevSlide = (elem, index, strClass) => {
     elem[index].classList.remove(strClass);
   };
@@ -244,7 +251,7 @@ scroll();
     prevSlide(dot, currentSlide, 'dot-active');
 
     currentSlide++;
-
+        
     if (currentSlide >= slide.length) {
       currentSlide = 0;
     }
@@ -270,19 +277,20 @@ scroll();
     if(!target.matches('.portfolio-btn, .dot')) {
       return;
     } 
-
+    
     prevSlide(slide, currentSlide, 'portfolio-item-active');
     prevSlide(dot, currentSlide, 'dot-active');
-
+    
     if (target.matches('#arrow-right')) {
       currentSlide++;
     } else if (target.matches('#arrow-left')) {
       currentSlide--;
-    } else if (target.matches('.dot')) {
+     } else if (target.matches('.dot')) {
       dot.forEach((elem, index) => {
         if (elem === target) {
           currentSlide = index;
         }
+        
       });
     }
     
@@ -310,10 +318,10 @@ scroll();
     }
   });  
   
-  startSlide();
+  // startSlide();
 
   };
-
+ 
  slider();
 
 
