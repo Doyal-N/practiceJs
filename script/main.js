@@ -205,7 +205,7 @@ scroll();
  tabs();
 
  //SLIDER
- const slider = () => {
+const slider = () => {
   const  slider = document.querySelector('.portfolio-content'),
          dotsBox = document.querySelector('.portfolio-dots');
 
@@ -236,15 +236,15 @@ const addDot = () => {
 
 addDot();
       
-  const prevSlide = (elem, index, strClass) => {
+const prevSlide = (elem, index, strClass) => {
     elem[index].classList.remove(strClass);
   };
 
-  const nextSlide = (elem, index, strClass) => {
+const nextSlide = (elem, index, strClass) => {
     elem[index].classList.add(strClass);
   };
 
-  const autoPlaySlide = () => {
+const autoPlaySlide = () => {
    
     prevSlide(slide, currentSlide, 'portfolio-item-active');
     prevSlide(dot, currentSlide, 'dot-active');
@@ -260,15 +260,15 @@ addDot();
 
   };
     
-  const startSlide = (time = 3000) => {
+const startSlide = (time = 3000) => {
   interval = setInterval(autoPlaySlide, time);
   };
   
-  const stopSlide = () => {
+const stopSlide = () => {
    clearInterval(interval);
   };
 
-  slider.addEventListener('click', (event) => {
+slider.addEventListener('click', (event) => {
     event.preventDefault();
     let target;
     target = event.target;
@@ -308,13 +308,13 @@ addDot();
     nextSlide(dot, currentSlide, 'dot-active');
   });
 
-  slider.addEventListener('mouseover', (event) => {
+slider.addEventListener('mouseover', (event) => {
     if (event.target.matches('.portfolio-btn') || event.target.matches('.dot')) {
       stopSlide();
     }
   });
 
-  slider.addEventListener('mouseout', (event) => {
+slider.addEventListener('mouseout', (event) => {
     if (event.target.matches('.portfolio-btn') || event.target.matches('.dot')) {
       startSlide();
     }
