@@ -224,10 +224,9 @@ const createDot = () => {
 };
 
 const addDot = () => {
-  slide.forEach(() => {
-    slide = document.querySelectorAll('.portfolio-item'),
-      dot = document.querySelectorAll('.dot');
-
+ slide.forEach(() => {   
+  slide = document.querySelectorAll('.portfolio-item'),
+  dot = document.querySelectorAll('.dot');
     if (slide.length !== dot.length) {
       createDot();
     }
