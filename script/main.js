@@ -60,10 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
   menu.forEach((item) => {
     item.addEventListener('click', (event) => {
      let target = event.target;
-     if (target.matches('.scroll, .close-btn') || target.tagName === 'IMG'|| (!target.closest('active-menu'))) {
+     if (target.matches('.scroll, .close-btn') || target.tagName === 'IMG' || !target.matches('active-menu')) {
        handlerMenu();
      } 
-     });
+       
+    });
   })
  };
  closeAndOpenMenu();
@@ -116,8 +117,7 @@ toggleMenu();
      } else {
        elem.addEventListener('click', nonAnimateModal);
      }
-    
-   });
+  });
 
    //закрытие модального окна
    popupCloseBtn.addEventListener('click', () => {
@@ -325,10 +325,9 @@ slider.addEventListener('mouseout', (event) => {
  
  slider();
 
-//COMMAND
- const images = document.querySelectorAll('.command__photo');
-
- const changeImage = () => {
+ //COMMAND
+const changeImage = () => {
+  const images = document.querySelectorAll('.command__photo');
   images.forEach((img) => {
     const way = img.getAttribute('src');
     const dataWay = img.dataset.img;
@@ -339,6 +338,14 @@ slider.addEventListener('mouseout', (event) => {
 };
 
 changeImage();
+
+ //CALCULATOR
+const input = document.querySelectorAll('input[type=number]');
+
+input.forEach((item) => {
+  const num = /[^\d]+$/g;
+  item.value.replace(num, '');
+})
 
 
 
