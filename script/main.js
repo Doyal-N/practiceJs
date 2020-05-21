@@ -340,12 +340,16 @@ const changeImage = () => {
 changeImage();
 
  //CALCULATOR
-const input = document.querySelectorAll('input[type=number]');
-
-input.forEach((item) => {
-  const num = /[^\d]+$/g;
-  item.value.replace(num, '');
-})
+ const inputNumbers = () => {
+  const inputs = document.querySelectorAll('.calc-item');
+   inputs.forEach((item) => {
+     item.addEventListener('input', () => {
+      const num = /[^\d]+$/g;
+      item.value = item.value.replace(num, '');
+     });
+   });
+ }
+  inputNumbers();
 
 
 
