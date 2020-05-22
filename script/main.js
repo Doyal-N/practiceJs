@@ -397,6 +397,14 @@ const inputNumbers = () => {
 
 calc(100);
 
+//валидация форм
+ const valid = new Validator({
+   selector: '#form1',
+   pattern: {},
+   method: {},
+ });
+ 
+ valid.init();
 
 
 
