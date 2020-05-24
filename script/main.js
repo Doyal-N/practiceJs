@@ -397,21 +397,21 @@ const inputNumbers = () => {
 
 calc(100);
 
-//валидация форм
- const valid = new Validator({
-   selector: '#form1',
-   pattern: {},
-   method: {
-   'phone': [
-      ['notEmpty'],
-      ['pattern', 'phone']
-     ],
-   'email': [
-      ['notEmpty'],
-      ['pattern', 'email']
-    ]
- }
- });
+// //валидация форм
+//  const valid = new Validator({
+//    selector: '#form1',
+//    pattern: {},
+//    method: {
+//    'phone': [
+//       ['notEmpty'],
+//       ['pattern', 'phone']
+//      ],
+//    'email': [
+//       ['notEmpty'],
+//       ['pattern', 'email']
+//     ]
+//  }
+//  });
  
  valid.init();
 
