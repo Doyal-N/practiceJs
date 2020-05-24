@@ -1,5 +1,5 @@
 class Validator{
-constructor({selector, pattern, method}) {
+constructor({selector, pattern = {}, method}) {
   this.form = document.querySelector(selector);
   this.pattern = pattern;
   this.method = method;
@@ -13,10 +13,18 @@ constructor({selector, pattern, method}) {
 
 init() {
   this.applyStyle();
+  this.setPattern();
   this.elementsForm.forEach(elem => elem.addEventListener('change', this.checkIt.bind(this))); 
 }
 
 isValid(elem) {
+const validatorMethod = {
+  notEmpty(elem) {
+
+  }
+};
+
+
 return false;
 }
 
@@ -28,10 +36,10 @@ checkIt(event) {
     this.error.delete(target);
   } else {
     this.showError(target);
-    
+    this.error.add(target);
   }
- 
-}
+  console.log(this.error);
+ }
 
 showError(elem) {
  elem.classList.remove('success');
@@ -40,7 +48,7 @@ showError(elem) {
   const errorDiv = document.createElement('div');
   errorDiv.textContent = 'Ошибка в этом поле';
   errorDiv.classList.add('validator-error');
-  elem.insertAdjacentElement('afterend', errorDiv)
+  elem.insertAdjacentElement('afterend', errorDiv);
 
 }
 
@@ -72,7 +80,20 @@ applyStyle() {
   document.head.append(style);
 }
 
+setPattern() {
+  if(!this.pattern.phone) {
+    this.pattern.phone = /^\+?[78]([-()]*\d){10}$/;
+  }
+  if(!this.pattern.email) {
+    this.pattern.email = /^\w+@\w+\.\w{2,}$/;
+  }
 
+
+
+
+console.log(this.pattern);
+
+}
 
 
 }

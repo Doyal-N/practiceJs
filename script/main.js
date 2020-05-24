@@ -401,7 +401,16 @@ calc(100);
  const valid = new Validator({
    selector: '#form1',
    pattern: {},
-   method: {},
+   method: {
+   'phone': [
+      ['notEmpty'],
+      ['pattern', 'phone']
+     ],
+   'email': [
+      ['notEmpty'],
+      ['pattern', 'email']
+    ],
+   },
  });
  
  valid.init();
