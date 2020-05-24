@@ -19,13 +19,24 @@ init() {
 
 isValid(elem) {
 const validatorMethod = {
-  notEmpty(elem) {
-
+  notEmpty(elem){
+   if(elem.value.trim() === '') {
+     return false;
+   }
+   return true;
+  },
+  
+  pattern(elem, pattern){
+   return pattern.test(elem.value);
   }
-};
+ };
+ const method = this.method[elem.id];
 
+if (method) {
+  return method.every( item => console.log(item))
+}
 
-return false;
+return true;
 }
 
 checkIt(event) {
@@ -87,11 +98,6 @@ setPattern() {
   if(!this.pattern.email) {
     this.pattern.email = /^\w+@\w+\.\w{2,}$/;
   }
-
-
-
-
-console.log(this.pattern);
 
 }
 

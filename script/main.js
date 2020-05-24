@@ -409,8 +409,8 @@ calc(100);
    'email': [
       ['notEmpty'],
       ['pattern', 'email']
-    ],
-   },
+    ]
+ }
  });
  
  valid.init();
