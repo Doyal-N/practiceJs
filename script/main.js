@@ -425,7 +425,7 @@ const sendForm = () => {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    form.append(statusMsg);
+    form.appendChild(statusMsg);
 
     const request = new XMLHttpRequest();
     request.open('POST', './server.php');
