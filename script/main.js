@@ -403,8 +403,14 @@ const sendForm = () => {
   loadMsg = 'Загрузка...',
   successMsg = 'Спасибо! Мы скоро свяжемся с Вами!',
   form = document.getElementById('form1'),
+  formInputs = document.querySelectorAll('.form1-inputs input'),
+  formModal = document.getElementById('form3'),
+  popupInputs = document.querySelectorAll('.popup-form input'),
+  footerForm = document.getElementById('form2'),
+  footerInputs = document.querySelectorAll('.footer-form input'),
   statusMsg = document.createElement('div');
 
+//главная форма на первой странице
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     form.append(statusMsg);
@@ -417,13 +423,63 @@ const sendForm = () => {
 
     postData(body, () => {
       statusMsg.textContent = successMsg;
+      for (let i = 0; i < formInputs.length; i++) {
+        formInputs[i].value = '';
+      }
     }, (error) => {
       statusMsg.textContent = errorMsg;
       console.error(error);
     });
 
   });
+//форма модального окна
+  formModal.addEventListener('submit', (event) => {
+    event.preventDefault();
+    formModal.append(statusMsg);
+    statusMsg.style.color = 'red';
+    statusMsg.textContent = loadMsg;   
+    const modalData = new FormData(formModal);
+    let modalInfo = {};
+    for(let val of modalData.entries()) {
+      modalInfo[val[0]] = val[1];
+    }
 
+    postData(modalInfo, () => {
+      statusMsg.textContent = successMsg;
+      for (let i = 0; i < popupInputs.length; i++) {
+        popupInputs[i].value = '';
+      }
+      }, (error) => {
+      statusMsg.textContent = errorMsg;
+      console.error(error);
+    });
+
+  });
+
+ //форма снизу - отправка на сервер
+ footerForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  footerForm.append(statusMsg);
+  statusMsg.textContent = loadMsg;   
+  const footerInfo = new FormData(footerForm);
+  let footerData = {};
+  for(let val of footerInfo.entries()) {
+    footerData[val[0]] = val[1];
+  }
+
+  postData(footerData, () => {
+    statusMsg.textContent = successMsg;
+    for (let i = 0; i < footerInputs.length; i++) {
+      footerInputs[i].value = '';
+    }
+  }, (error) => {
+    statusMsg.textContent = errorMsg;
+    console.error(error);
+  });
+
+});
+ 
+ //функция отправки на сервер
   const postData = (data, outputData, errorData) => {
     const request = new XMLHttpRequest();
 
