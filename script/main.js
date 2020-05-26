@@ -431,6 +431,7 @@ const sendForm = () => {
     request.open('POST', './server.php');
     request.setRequestHeader('Content-Type', 'multipart/form-data');
     const formData = new FormData(form);
+    request.send(formData);
 
   request.addEventListener('readystatechange', () => {
     statusMsg.textContent = loadMsg;
