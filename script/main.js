@@ -407,28 +407,39 @@ const sendForm = () => {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    form.appendChild(statusMsg);
-
-    const request = new XMLHttpRequest();
-    request.open('POST', './server.php');
-    request.setRequestHeader('Content-Type', 'multipart/form-data');
+    form.append(statusMsg);
+    statusMsg.textContent = loadMsg;   
     const formData = new FormData(form);
-    request.send(formData);
-
-  request.addEventListener('readystatechange', () => {
-    statusMsg.textContent = loadMsg;
-
-    if (request.readyState !== 4) {
-      return;
+    let body = {};
+    for(let val of formData.entries()) {
+      body[val[0]] = val[1];
     }
 
-    if (request.status === 200) {
+    postData(body, () => {
       statusMsg.textContent = successMsg;
-    } else {
+    }, (error) => {
       statusMsg.textContent = errorMsg;
-    }
+      console.error(error);
+    });
+
   });
- });
+
+  const postData = (data, outputData, errorData) => {
+    const request = new XMLHttpRequest();
+
+    request.addEventListener('readystatechange', () => {
+        if (request.readyState !== 4) return; 
+    
+        if (request.status === 200) {
+         outputData();
+        } else {
+         errorData(request.status);
+        }
+      });  
+      request.open('POST', './server.php');
+      request.setRequestHeader('Content-Type', 'application/json');
+      request.send(JSON.stringify(data));
+  }  
 
 };
 
