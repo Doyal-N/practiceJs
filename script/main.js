@@ -397,29 +397,11 @@ const inputNumbers = () => {
 
 calc(100);
 
-//валидация форм
-//  const valid = new Validator({
-//    selector: '#form1',
-//    pattern: {},
-//    method: {
-//    'phone': [
-//       ['notEmpty'],
-//       ['pattern', 'phone']
-//      ],
-//    'email': [
-//       ['notEmpty'],
-//       ['pattern', 'email']
-//     ]
-//  }
-//  });
- 
- valid.init();
-
 //send AJAX-form
 const sendForm = () => {
   const errorMsg = 'Что-то пошло не так...',
   loadMsg = 'Загрузка...',
-  success = 'Спасибо! Мы скоро свяжемся с Вами!',
+  successMsg = 'Спасибо! Мы скоро свяжемся с Вами!',
   form = document.getElementById('form1'),
   statusMsg = document.createElement('div');
 
@@ -435,11 +417,18 @@ const sendForm = () => {
 
   request.addEventListener('readystatechange', () => {
     statusMsg.textContent = loadMsg;
+
+    if (request.readyState !== 4) {
+      return;
+    }
+
+    if (request.status === 200) {
+      statusMsg.textContent = successMsg;
+    } else {
+      statusMsg.textContent = errorMsg;
+    }
   });
-
-
  });
-
 
 };
 
