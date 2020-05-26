@@ -397,7 +397,7 @@ const inputNumbers = () => {
 
 calc(100);
 
-// //валидация форм
+//валидация форм
 //  const valid = new Validator({
 //    selector: '#form1',
 //    pattern: {},
@@ -415,9 +415,34 @@ calc(100);
  
  valid.init();
 
+//send AJAX-form
+const sendForm = () => {
+  const errorMsg = 'Что-то пошло не так...',
+  loadMsg = 'Загрузка...',
+  success = 'Спасибо! Мы скоро свяжемся с Вами!',
+  form = document.getElementById('form1'),
+  statusMsg = document.createElement('div');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    form.append(statusMsg);
+
+    const request = new XMLHttpRequest();
+    request.open('POST', './server.php');
+    request.setRequestHeader('Content-Type', 'multipart/form-data');
+    const formData = new FormData(form);
+
+  request.addEventListener('readystatechange', () => {
+    statusMsg.textContent = loadMsg;
+  });
 
 
+ });
 
+
+};
+
+sendForm();
 
 
 
