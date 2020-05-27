@@ -465,6 +465,12 @@ calc(100);
 
       postData(body, () => {
        statusMsg.textContent = successMsg;
+       let inputsForm = item.elements;
+      for (let elem of inputsForm) {
+        if (elem.tagName.toLowerCase() !== 'button') {
+          elem.value = '';
+        }
+      }
       }, (error) => {
         statusMsg.textContent = errorMsg;
         console.error(error);
