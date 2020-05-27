@@ -340,7 +340,7 @@ const changeImage = () => {
 changeImage();
 
  //CALCULATOR
-const calc = (price = 100) => {
+ const calc = (price = 100) => {
 
  const calcBlock = document.querySelector('.calc-block'),
   calcType = document.querySelector('.calc-type'),
@@ -370,7 +370,7 @@ const calc = (price = 100) => {
     if (typeValue && square) {
       total = price * typeValue * square * countValue * dayValue;
     } 
-
+   //отрисовка ИТОГО
     animate({duration: 2000, timing(timeFraction){
       return timeFraction;
     },
@@ -416,13 +416,9 @@ function animate({timing, draw, duration}) {
   
       if (timeFraction < 1) {
         requestAnimationFrame(animate);
-      }
-  
+      }  
     });
   }
- 
-
-
 };
 
 calc(100);
@@ -448,89 +444,36 @@ calc(100);
  validInputs();
 
 //send AJAX-form
-const sendForm = () => {
-  const errorMsg = 'Что-то пошло не так...',
-  loadMsg = 'Загрузка...',
-  successMsg = 'Спасибо! Мы скоро свяжемся с Вами!',
-  form = document.getElementById('form1'),
-  formInputs = document.querySelectorAll('.form1-inputs input'),
-  formModal = document.getElementById('form3'),
-  popupInputs = document.querySelectorAll('.popup-form input'),
-  footerForm = document.getElementById('form2'),
-  footerInputs = document.querySelectorAll('.footer-form input'),
-  statusMsg = document.createElement('div');
+ const sendUserdata = () => {
+   const forms = document.querySelectorAll('form'),
+   errorMsg = 'Что-то пошло не так...',
+   loadMsg = 'Загрузка...',
+   successMsg = 'Спасибо! Мы скоро свяжемся с Вами!',
+   statusMsg = document.createElement('div');
+   
+   forms.forEach((item) => {
+     item.addEventListener('submit', (event) => {
+       event.preventDefault();
+       item.append(statusMsg);
+       statusMsg.style.color = 'red';
+       statusMsg.textContent = loadMsg;
+       let formData = new FormData(item);
+       let body = {};
+       for(let val of formData.entries()) {
+         body[val[0]] = val[1];
+       } 
 
-//главная форма на первой странице
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    form.append(statusMsg);
-    statusMsg.textContent = loadMsg;   
-    const formData = new FormData(form);
-    let body = {};
-    for(let val of formData.entries()) {
-      body[val[0]] = val[1];
-    }
-
-    postData(body, () => {
-      statusMsg.textContent = successMsg;
-      for (let i = 0; i < formInputs.length; i++) {
-        formInputs[i].value = '';
-      }
-    }, (error) => {
-      statusMsg.textContent = errorMsg;
-      console.error(error);
-    });
-
-  });
-//форма модального окна
-  formModal.addEventListener('submit', (event) => {
-    event.preventDefault();
-    formModal.append(statusMsg);
-    statusMsg.style.color = 'red';
-    statusMsg.textContent = loadMsg;   
-    const modalData = new FormData(formModal);
-    let modalInfo = {};
-    for(let val of modalData.entries()) {
-      modalInfo[val[0]] = val[1];
-    }
-
-    postData(modalInfo, () => {
-      statusMsg.textContent = successMsg;
-      for (let i = 0; i < popupInputs.length; i++) {
-        popupInputs[i].value = '';
-      }
+      postData(body, () => {
+       statusMsg.textContent = successMsg;
       }, (error) => {
-      statusMsg.textContent = errorMsg;
-      console.error(error);
-    });
+        statusMsg.textContent = errorMsg;
+        console.error(error);
+      });
 
-  });
+     });
+   });
 
- //форма снизу - отправка на сервер
- footerForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  footerForm.append(statusMsg);
-  statusMsg.textContent = loadMsg;   
-  const footerInfo = new FormData(footerForm);
-  let footerData = {};
-  for(let val of footerInfo.entries()) {
-    footerData[val[0]] = val[1];
-  }
-
-  postData(footerData, () => {
-    statusMsg.textContent = successMsg;
-    for (let i = 0; i < footerInputs.length; i++) {
-      footerInputs[i].value = '';
-    }
-  }, (error) => {
-    statusMsg.textContent = errorMsg;
-    console.error(error);
-  });
-
-});
- 
- //функция отправки на сервер
-  const postData = (data, outputData, errorData) => {
+ const postData = (data, outputData, errorData) => {
     const request = new XMLHttpRequest();
 
     request.addEventListener('readystatechange', () => {
@@ -545,11 +488,15 @@ const sendForm = () => {
       request.open('POST', './server.php');
       request.setRequestHeader('Content-Type', 'application/json');
       request.send(JSON.stringify(data));
-  }  
+  } 
 
-};
+ };
+sendUserdata();
 
-sendForm();
+ 
+
+
+
 
 
 
