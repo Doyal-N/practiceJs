@@ -463,39 +463,40 @@ calc(100);
          body[val[0]] = val[1];
        } 
 
-      postData(body, () => {
+     postData(body)
+      .then(success => {
        statusMsg.textContent = successMsg;
        let inputsForm = item.elements;
-      for (let elem of inputsForm) {
-        if (elem.tagName.toLowerCase() !== 'button') {
+       for (let elem of inputsForm) {
+         if (elem.tagName.toLowerCase() !== 'button') {
           elem.value = '';
-        }
-      }
-      }, (error) => {
+         }}})
+      .catch(error => {
         statusMsg.textContent = errorMsg;
         console.error(error);
       });
-
+    })
      });
-   });
 
- const postData = (data, outputData, errorData) => {
+ const postData = (data) => {
+   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
 
     request.addEventListener('readystatechange', () => {
         if (request.readyState !== 4) return; 
     
         if (request.status === 200) {
-         outputData();
+         resolve(request);
         } else {
-         errorData(request.status);
+         reject(request.statusText);
         }
       });  
       request.open('POST', './server.php');
       request.setRequestHeader('Content-Type', 'application/json');
       request.send(JSON.stringify(data));
-  } 
+   })
 
+  } 
  };
 sendUserdata();
 
