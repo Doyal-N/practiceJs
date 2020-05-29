@@ -62,8 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
      let target = event.target;
      if (target.matches('.scroll, .close-btn') || target.tagName === 'IMG' || !target.matches('active-menu')) {
        handlerMenu();
-     } 
-       
+       console.log(target);
+     }  
+          
     });
   })
  };
