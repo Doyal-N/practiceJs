@@ -62,8 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
      let target = event.target;
      if (target.matches('.scroll, .close-btn') || target.tagName === 'IMG' || !target.matches('active-menu')) {
        handlerMenu();
-       console.log(target);
-     }  
+            }  
           
     });
   })
@@ -465,7 +464,11 @@ calc(100);
        } 
 
      postData(body)
-      .then(success => {
+      .then(response => {
+        if(response.status !== 200) {
+          throw new Error('Network status is not 200.')
+        }
+
        statusMsg.textContent = successMsg;
        let inputsForm = item.elements;
        for (let elem of inputsForm) {
@@ -480,24 +483,15 @@ calc(100);
      });
 
  const postData = (data) => {
-   return new Promise((resolve, reject) => {
-    const request = new XMLHttpRequest();
+   return fetch('./server.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'aplication/json'
+    },
+    body: JSON.stringify(data),
+   });
 
-    request.addEventListener('readystatechange', () => {
-        if (request.readyState !== 4) return; 
-    
-        if (request.status === 200) {
-         resolve(request);
-        } else {
-         reject(request.statusText);
-        }
-      });  
-      request.open('POST', './server.php');
-      request.setRequestHeader('Content-Type', 'application/json');
-      request.send(JSON.stringify(data));
-   })
-
-  } 
+  }; 
  };
 sendUserdata();
 
