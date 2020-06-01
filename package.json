@@ -1,0 +1,23 @@
+{
+  "name": "practicejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Doyal-N/practiceJs.git"
+  },
+  "author": "Dmitry Zhuravlev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Doyal-N/practiceJs/issues"
+  },
+  "homepage": "https://github.com/Doyal-N/practiceJs#readme",
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
