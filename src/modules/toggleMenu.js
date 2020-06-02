@@ -1,27 +1,45 @@
-const toggleMenu = () => { 
-  const menu = document.querySelectorAll('#menu');
-    
-  //проверяет наличие свойства, добавление-удаление свойства
-  const handlerMenu = () => { 
-    for (let i = 0; i < menu.length; i++) {
-      menu[i].classList.toggle('active-menu') 
-    }; 
-    };  
+const toggleMenu = () => {
+  const menu = document.querySelector('menu'),
+    section = document.querySelector('main');
 
-//навешиваем событие 
- const closeAndOpenMenu = () => {
-  menu.forEach((item) => {
-    item.addEventListener('click', (event) => {
-     let target = event.target;
-     if (target.matches('.scroll, .close-btn') || target.tagName === 'IMG' || !target.matches('active-menu')) {
-       handlerMenu();
-            }  
-          
-    });
-  })
- };
- closeAndOpenMenu();
+  const handlerMenu = () => {
+    menu.classList.toggle('active-menu');
+  };
+//клик вне блока меню
+  section.addEventListener('click', (event) => {
+    let target = event.target;
 
- };
+    if (target.closest('.menu')) {
+      handlerMenu();
+    } else if (target.closest('main') && (menu.classList.contains('active-menu'))) {
+      handlerMenu();
+    }
+  });
+//клик по кнопкам и ссылкам
+  menu.addEventListener('click', (event) => {
+    let target = event.target;
+    let link = target.closest('a');
 
- export default toggleMenu;
+    if (link) {
+      if (link.classList.contains('close-btn')) {
+        handlerMenu();
+      } else if (link.closest('li')) {
+        event.preventDefault();
+        handlerMenu();
+
+        let sectionClass = link.getAttribute('href').substr(1);
+
+        if (sectionClass.includes('-')) {
+          sectionClass = sectionClass.substr(0, sectionClass.indexOf('-'));
+        }
+
+        document.querySelector(`.${sectionClass}`).scrollIntoView({
+          block: 'start',
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
+};
+
+export default toggleMenu;

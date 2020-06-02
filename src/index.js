@@ -19,7 +19,7 @@ import validInputs from './modules/validInputs';
 import sendUserdata from './modules/sendUserdata';
 
   //TIMER вызов по дате и времени
-  countTimer('14 may 2020 20:57')
+  countTimer('04 june 2020 20:57')
   //MENU
   toggleMenu();
   //POPUP

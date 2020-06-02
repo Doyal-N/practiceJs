@@ -46,7 +46,7 @@ const autoPlaySlide = () => {
     if (currentSlide >= slide.length) {
       currentSlide = 0;
     }
-
+   
     nextSlide(slide, currentSlide, 'portfolio-item-active');
     nextSlide(dot, currentSlide, 'dot-active');
 
@@ -60,6 +60,9 @@ const stopSlide = () => {
    clearInterval(interval);
   };
 
+  startSlide();
+  dot = document.querySelectorAll('.dot');
+ 
 slider.addEventListener('click', (event) => {
     event.preventDefault();
     let target;
@@ -112,8 +115,7 @@ slider.addEventListener('mouseout', (event) => {
     }
   });  
   
-  // startSlide();
-
+  
   };
 
   export default slider;

@@ -9,7 +9,7 @@ const sendUserdata = () => {
     item.addEventListener('submit', (event) => {
       event.preventDefault();
       item.append(statusMsg);
-      statusMsg.style.color = 'red';
+      statusMsg.style.color = 'blue';
       statusMsg.textContent = loadMsg;
       let formData = new FormData(item);
       let body = {};

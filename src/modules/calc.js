@@ -29,7 +29,7 @@ const calc = (price = 100) => {
        total = price * typeValue * square * countValue * dayValue;
      } 
     //отрисовка ИТОГО
-     animate({duration: 2000, timing(timeFraction){
+     animate({duration: 1000, timing(timeFraction){
        return timeFraction;
      },
      draw(progress) {

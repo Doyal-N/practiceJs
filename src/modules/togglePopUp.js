@@ -3,8 +3,6 @@ const togglePopUp = () => {
        popupBtn = document.querySelectorAll('.popup-btn'),
        popupCloseBtn = document.querySelector('.popup-close'),
        contentPopUp = document.querySelector('.popup-content');
-
-let width = document.documentElement.clientWidth;
        
  let count = 120;
 //анимация popup справа
@@ -37,7 +35,7 @@ let animate = requestAnimationFrame(animatePopUp);
 
    //перебор и анимация окна
   popupBtn.forEach((elem) => {
-   if (width > 768) {
+    if (document.documentElement.clientWidth > 768) {
      elem.addEventListener('click', animatePopUp);
     } else {
       elem.addEventListener('click', nonAnimateModal);
@@ -45,8 +43,8 @@ let animate = requestAnimationFrame(animatePopUp);
  });
 
   //закрытие модального окна
-  popupCloseBtn.addEventListener('click', () => {
-  if (width > 768) {
+  popupCloseBtn.addEventListener('click', () => {   
+  if (document.documentElement.clientWidth > 768) {
       resetAnimatePopUp();
     }else {
      popup.style.display = 'none';
