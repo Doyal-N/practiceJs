@@ -6,12 +6,12 @@ const validInputs = () => {
   //разрешено кириллица и пробел
   for (let i = 0; i < nameInputs.length; i++) {
     nameInputs[i].addEventListener('input', () =>{
-      nameInputs[i].value = nameInputs[i].value.replace(/[a-zA-Z0-9_-`\\/.\-=+*]/g, '');
+      nameInputs[i].value = nameInputs[i].value.replace(/[a-zA-Z0-9_-`.,\/\\|!?\-=+*]/g, '');
     })
   };
 
  message.addEventListener('input', () => {
-  message.value = message.value.replace(/[a-zA-Z0-9_-`\-=+*]/g, '');
+  message.value = message.value.replace(/[a-zA-Z0-9_-`\/\\|\-=+*]/g, '');
  });
 
  //разрешено цифры и +
